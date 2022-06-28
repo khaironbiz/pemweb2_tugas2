@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfesiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::delete('/admin/user/delete/{id}',[UserController::class,'delete']);
 
 //profesi
 Route::get('/admin/profesi',[ProfesiController::class,'index'])->name('profesi');
+Route::post('/admin/profesi/store',[ProfesiController::class,'store']);

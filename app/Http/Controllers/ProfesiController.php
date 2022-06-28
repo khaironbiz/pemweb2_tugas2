@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Example;
+use Illuminate\Support\Str;
+use App\Models\Profesi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProfesiController extends Controller
 {
@@ -17,6 +20,7 @@ class ProfesiController extends Controller
         //
         $data = [
             'title'     => 'Daftar Profesi',
+            'profesi'   => Profesi::all()->sortBy('nama_profesi'),
         ];
         return view('admin.profesi.index', $data);
     }
@@ -39,7 +43,28 @@ class ProfesiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       echo "Sukses";
+        $validator = Validator::make($request->all(), [
+            'nama_profesi' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('profesi')
+                ->withErrors($validator)
+                ->withInput();
+        }else {
+            $profesi = new Profesi();
+            $profesi->nama_profesi = $request->get('nama_profesi');
+            $profesi->slug = Str::slug($request->get('nama_profesi'), '-');
+            $profesi->created_by = '0';
+            $profesi->save();
+
+            if ($profesi) {
+                return redirect()->route('profesi')->with(['success' => 'data anda tersimpan']);
+            } else {
+                return redirect()->route('profesi')->with(['error' => 'data gagal tersimpan']);
+            }
+        }
+
     }
 
     /**

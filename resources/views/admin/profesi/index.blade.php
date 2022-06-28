@@ -43,6 +43,7 @@
                                 </div>
                             @endif
                             @if(\Session::has('success'))
+
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {!! \Session::get('success') !!}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -50,18 +51,41 @@
                                 </button>
                             </div>
                             @endif
-
                             <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
                                     Tambah
                             </button>
                             <table id="example1" class="table table-bordered table-striped table-sm">
-
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama Profesi</th>
+                                        <th>Slug</th>
+                                        <th>Count</th>
+                                        <th>Created_at</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @php($x=1)
+                                @foreach($profesi as $profesi)
+                                    <tr>
+                                        <td>{{$x++}}</td>
+                                        <td>{{$profesi->nama_profesi}}</td>
+                                        <td>{{$profesi->slug}}</td>
+                                        <td></td>
+                                        <td>{{$profesi->created_at}}</td>
+                                        <td>
+                                            <a href="{{url('/admin/profesi/detail/'.$profesi->slug)}}" class="btn btn-sm btn-info">Detail</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
-                                                <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Tambah Profesi</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -70,18 +94,11 @@
                                                 @csrf
                                             <div class="modal-body">
                                                 <div class="row mb-1">
-                                                    <label class="col-sm-2 col-form-label">Name</label>
+                                                    <label class="col-sm-2 col-form-label">Nama Profesi</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text"class="form-control" name="name">
+                                                        <input type="text"class="form-control" name="nama_profesi">
                                                     </div>
                                                 </div>
-                                                <div class="row mb-1">
-                                                    <label class="col-sm-2 col-form-label">User Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text"class="form-control" name="username">
-                                                    </div>
-                                                </div>
-
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
