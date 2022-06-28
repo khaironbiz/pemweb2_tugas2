@@ -75,14 +75,14 @@
                                         <td></td>
                                         <td>{{$profesi->created_at}}</td>
                                         <td>
-                                            <a href="{{url('/admin/profesi/detail/'.$profesi->slug)}}" class="btn btn-sm btn-info">Detail</a>
+                                            <a href="{{url('/admin/profesi/show/'.$profesi->slug)}}" class="btn btn-sm btn-info">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary">
                                                 <h5 class="modal-title" id="exampleModalLabel">Tambah Profesi</h5>
@@ -94,8 +94,8 @@
                                                 @csrf
                                             <div class="modal-body">
                                                 <div class="row mb-1">
-                                                    <label class="col-sm-2 col-form-label">Nama Profesi</label>
-                                                    <div class="col-sm-10">
+                                                    <label class="col-md-4 col-lg-3 col-form-label">Nama Profesi</label>
+                                                    <div class="col-md-8 col-lg-9">
                                                         <input type="text"class="form-control" name="nama_profesi">
                                                     </div>
                                                 </div>

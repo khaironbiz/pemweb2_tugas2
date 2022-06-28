@@ -43,7 +43,7 @@ class ProfesiController extends Controller
      */
     public function store(Request $request)
     {
-       echo "Sukses";
+
         $validator = Validator::make($request->all(), [
             'nama_profesi' => 'required',
         ]);
@@ -73,9 +73,16 @@ class ProfesiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
+        //
+        $data = [
+            'title'     => 'Daftar Profesi',
+
+            'profesi'   => Profesi::firstWhere('slug', $slug),
+        ];
+        return view('admin.profesi.detail', $data);
     }
 
     /**

@@ -51,6 +51,12 @@
                   <p>Example</p>
                 </a>
               </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/profesi')}}" class="nav-link">
+                        <i class="far fa-user nav-icon"></i>
+                        <p>Profesi</p>
+                    </a>
+                </li>
 
 
               <li class="nav-item">

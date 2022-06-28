@@ -36,3 +36,4 @@ Route::delete('/admin/user/delete/{id}',[UserController::class,'delete']);
 //profesi
 Route::get('/admin/profesi',[ProfesiController::class,'index'])->name('profesi');
 Route::post('/admin/profesi/store',[ProfesiController::class,'store']);
+Route::get('/admin/profesi/show/{id}',[ProfesiController::class,'show']);
