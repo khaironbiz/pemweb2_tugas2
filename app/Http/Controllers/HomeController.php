@@ -104,9 +104,13 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        //
+        $data   = [
+            'title'   => 'Update data',
+            'example' => Example::firstWhere('username', $username),
+        ];
+        return view('admin.layout.show-data', $data);
     }
 
     /**
@@ -116,12 +120,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($id)
+    public function edit($username)
     {
 
         $data   = [
             'title'   => 'Update data',
-            'example' => Example::find($id),
+            'example' => Example::firstWhere('username', $username),
         ];
         return view('admin.layout.edit-data', $data);
     }
