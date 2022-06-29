@@ -36,11 +36,39 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <label class="col-md-4 col-lg-3">Profesi</label>
-                                                    <div class="col-md-8 col-lg-9">: {{$profesi->nama_profesi}}</div>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->profesi->nama_profesi}}</div>
                                                 </div>
                                                 <div class="row">
-                                                    <label class="col-md-4 col-lg-3">Slug</label>
-                                                    <div class="col-md-8 col-lg-9">: {{$profesi->slug}}</div>
+                                                    <label class="col-md-4 col-lg-3">Organisasi Profesi</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->nama_op}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Singkatan</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->singkatan}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Pimpinan</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->pimpinan}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Alamat</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->alamat}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Email</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->email}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">HP</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->hp}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Telepon</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->telp}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Website</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->web}}</div>
                                                 </div>
                                             </div>
                                         </div>

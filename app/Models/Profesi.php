@@ -14,4 +14,7 @@ class Profesi extends Model
         'created_by',
 
     ];
+    public function organisasi_profesi(){
+        return $this->hasMany(Organisasi_profesi::class, 'id_profesi', 'id');
+    }
 }

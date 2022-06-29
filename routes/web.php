@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfesiController;
+use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\OrganisasiProfesiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,8 @@ use App\Http\Controllers\ProfesiController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 Route::get('/',[App\Http\Controllers\HomeController::class,'dashboard']);
+Route::get('/admin',[App\Http\Controllers\HomeController::class,'dashboard']);
 Route::get('/admin/data',[App\Http\Controllers\HomeController::class,'index'])->name('example.data');
 Route::get('/admin/data/add',[App\Http\Controllers\HomeController::class,'create'])->name('example.data.add');
 Route::post('/admin/data/insert-data',[App\Http\Controllers\HomeController::class,'store'])->name('example.insert');
@@ -37,3 +37,16 @@ Route::delete('/admin/user/delete/{id}',[UserController::class,'delete']);
 Route::get('/admin/profesi',[ProfesiController::class,'index'])->name('profesi');
 Route::post('/admin/profesi/store',[ProfesiController::class,'store']);
 Route::get('/admin/profesi/show/{id}',[ProfesiController::class,'show']);
+
+//OP
+Route::get('/admin/op',[OrganisasiProfesiController::class,'index'])->name('op');
+Route::get('/admin/op/read',[OrganisasiProfesiController::class,'read'])->name('op.read');
+Route::get('/admin/op/create',[OrganisasiProfesiController::class,'create']);
+Route::get('/admin/op/store',[OrganisasiProfesiController::class,'store']);
+Route::get('/admin/op/show/{id}',[OrganisasiProfesiController::class,'show']);
+Route::get('/admin/op/update/{id}',[OrganisasiProfesiController::class,'update']);
+
+//organisasi
+Route::get('/admin/organisasi',[OrganisasiController::class,'index'])->name('organisasi');
+Route::get('/admin/organisasi/show/{id}',[OrganisasiController::class,'show'])->name('organisasi.show');
+Route::post('/admin/organisasi/store',[OrganisasiController::class,'store']);
