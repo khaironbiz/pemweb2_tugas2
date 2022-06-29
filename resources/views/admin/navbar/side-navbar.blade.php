@@ -44,13 +44,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-
               <li class="nav-item">
-                <a href="{{ url('/admin/data')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Example</p>
-                </a>
+                <a href="{{ url('/admin/data')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Example</a>
               </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/user')}}" class="nav-link">
+                        <i class="far fa-user nav-icon"></i>
+                        <p>Pegawai</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ url('/admin/profesi')}}" class="nav-link">
                         <i class="far fa-user nav-icon"></i>
@@ -59,12 +62,14 @@
                 </li>
 
 
-              <li class="nav-item">
-                <a href="{{ url('/admin/user')}}" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>Pegawai</p>
-                </a>
-              </li>
+
+
+                <li class="nav-item">
+                    <a href="{{ url('/admin/organisasi')}}" class="nav-link">
+                        <i class="far fa-user nav-icon"></i>
+                        <p>Organisasi Profesi</p>
+                    </a>
+                </li>
             </ul>
           </li>
 

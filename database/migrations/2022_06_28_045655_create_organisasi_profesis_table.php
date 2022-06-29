@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('id_profesi');
             $table->string('nama_op',255)->unique();
             $table->string('slug_op',255)->unique();
+            $table->string('singkatan',255)->unique();
             $table->string('pimpinan',255);
             $table->string('alamat',255);
             $table->string('email',255)->unique();

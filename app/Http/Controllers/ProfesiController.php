@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Example;
+use App\Models\Organisasi_profesi;
 use Illuminate\Support\Str;
 use App\Models\Profesi;
 use Illuminate\Http\Request;
@@ -77,10 +78,13 @@ class ProfesiController extends Controller
     {
         //
         //
+        $profesi = Profesi::firstWhere('slug', $slug);
+        $organisasi = Organisasi_profesi::where('id_profesi', $profesi->id)->get();
         $data = [
             'title'     => 'Daftar Profesi',
+            'profesi'   => $profesi,
+            'organisasi'=> $organisasi,
 
-            'profesi'   => Profesi::firstWhere('slug', $slug),
         ];
         return view('admin.profesi.detail', $data);
     }

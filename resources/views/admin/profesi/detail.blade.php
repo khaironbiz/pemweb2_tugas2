@@ -44,6 +44,44 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                @foreach($organisasi as $organisasi)
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Organisasi</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->nama_op}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Singkatan</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->singkatan}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Pimpinan</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->pimpinan}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Alamat</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->alamat}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Email</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->email}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Website</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->web}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">HP</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->hp}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-4 col-lg-3">Telp</label>
+                                                    <div class="col-md-8 col-lg-9">: {{$organisasi->telp}}</div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div class="col-md-6">
