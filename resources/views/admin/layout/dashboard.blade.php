@@ -37,7 +37,7 @@
           </div>
 
         </div>
-        
+
         <!-- /.row -->
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -102,9 +102,10 @@
           </div>
           <!-- ./col -->
         </div>
-        
+
+
         <!-- /.row -->
-        
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

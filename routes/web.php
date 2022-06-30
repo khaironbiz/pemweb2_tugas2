@@ -29,8 +29,9 @@ Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::clas
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');
 Route::post('/admin/user/store',[UserController::class,'store']);
-Route::get('/admin/user/show/{id}',[UserController::class,'show']);
-Route::get('/admin/user/edit/{id}',[UserController::class,'edit']);
+Route::get('/admin/user/show/{id}',[UserController::class,'show'])->name('user.show');
+Route::get('/admin/user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
+Route::post('/admin/user/update/{id}',[UserController::class,'update']);
 Route::delete('/admin/user/delete/{id}',[UserController::class,'delete']);
 
 //profesi
@@ -50,3 +51,4 @@ Route::get('/admin/op/update/{id}',[OrganisasiProfesiController::class,'update']
 Route::get('/admin/organisasi',[OrganisasiController::class,'index'])->name('organisasi');
 Route::get('/admin/organisasi/show/{id}',[OrganisasiController::class,'show'])->name('organisasi.show');
 Route::post('/admin/organisasi/store',[OrganisasiController::class,'store']);
+Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generate');

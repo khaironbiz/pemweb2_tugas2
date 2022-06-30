@@ -11,8 +11,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item"><a href="#">{{$class}}</a></li>
+                            <li class="breadcrumb-item active">{{$sub_class}}</li>
                         </ol>
                     </div>
                 </div>
@@ -28,11 +28,22 @@
                         <!-- /.card -->
 
                         <div class="card">
-                            <div class="card-header">
+                            <form form id="quickForm" action="/admin/user/update/{{$user->id}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card-header">
                                 <h3 class="card-title">{{$title}}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 @if(\Session::has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         {!! \Session::get('success') !!}
@@ -61,16 +72,17 @@
                                 </div>
                                     <div class="row">
                                         <label class="col-sm-2">Foto</label>
-                                        <div class="col-sm-5"> <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-75"></div>
-                                        <div class="col-sm-5"><input class="form-control" type="file"></div>
+                                        <div class="col-sm-3"><input class="form-control" type="file" name="file"></div>
+                                        <div class="col-sm-7"> <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-75"></div>
                                     </div>
 
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer text-center">
-                                <a href="/admin/user/show/{{$user->id}}" class="btn btn-info btn-sm">Back</a>
-                                <a href="/admin/user/edit/{{$user->id}}" class="btn btn-success btn-sm">Update</a>
+                                <a href="/admin/user/show/{{$user->username}}" class="btn btn-info btn-sm">Back</a>
+                                <button class="btn btn-sm btn-success" type="submit">Update</button>
                             </div>
+                            </form>
                         </div>
                         <!-- /.card -->
                     </div>

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Example;
+use App\Models\Profesi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageServiceProvider;
 
 class UserController extends Controller
 {
@@ -35,10 +40,10 @@ class UserController extends Controller
 
 
         $user = new User();
-        $user->name = $request->get('name');
-        $user->username = $request->get('username');
-        $user->email = $request->get('email');
-        $user->password = sha1($request->get('password'));
+        $user->name = $request->name;
+        $user->username = Str::slug($request->username, '-');
+        $user->email = $request->email;
+        $user->password = sha1($request->password);
         $user->foto = $nama_file_baru;
         $user->save();
 
@@ -48,21 +53,63 @@ class UserController extends Controller
             return redirect()->route('example.data')->with(['error'=>'data gagal tersimpan']);
         }
     }
-    public function show($id){
+    public function show($username){
 
         $data = [
             'title'     => "Detail User",
-            'user'      => User::find($id),
+            'user'      => User::firstWhere('username', $username),
         ];
         return view('admin.user.detail', $data);
     }
-    public function edit($id){
+    public function edit($username){
 
     $data = [
         'title'     => "Edit User",
-        'user'      => User::find($id),
+        'class'     => 'User',
+        'sub_class' => 'Edit',
+        'user'      => User::firstWhere('username', $username),
     ];
     return view('admin.user.edit', $data);
+    }
+    public function update(Request $request, $id){
+        $validator = Validator::make($request->all(), [
+            'nama'      => 'required',
+            'username'  => 'required|alpha_num',
+            'email'     => 'required|email:rfc,dns',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('profesi')
+                ->withErrors($validator)
+                ->withInput();
+        }else {
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('file');
+            $data = User::find($id);
+            //ambil data dari form
+            $data->name     = $request->nama;
+            $data->username = Str::slug($request->username, '-');
+            $data->email    = $request->email;
+            //jika ada gambar yang diupload
+            if($file !=''){
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload = 'assets/upload/images/user/';
+                $file_lama     = $tujuan_upload.$data->foto;
+                unlink($file_lama);
+                // upload file
+                $nama_file_baru = uniqid().$file->getClientOriginalName();
+                $file->move($tujuan_upload,$nama_file_baru);
+                $data->foto = $nama_file_baru;
+                $data->save();
+            }else{
+                //jika tidak ada gambar
+                $data->save();
+            }
+            if ($data) {
+                return redirect()->route('user')->with(['success' => 'data anda tersimpan']);
+            } else {
+                return redirect()->route('user')->with(['error' => 'data gagal tersimpan']);
+            }
+        }
     }
     public function delete($id){
         $user       = User::find($id);

@@ -73,7 +73,7 @@
                                     </td>
                                     <td>{{$exp->email}} </td>
                                     <td>
-                                        <a href= "{{ url('/admin/user/show/' . $exp->id)}}" type="button" class="btn btn-primary btn-sm">Detail</a>
+                                        <a href= "{{ url('/admin/user/show/' . $exp->username)}}" type="button" class="btn btn-primary btn-sm">Detail</a>
                                     </td>
 
                                 </tr>

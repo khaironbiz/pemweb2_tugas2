@@ -33,6 +33,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+
                                 @if(\Session::has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         {!! \Session::get('success') !!}
@@ -62,7 +63,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer text-center">
                                 <a href="/admin/user/" class="btn btn-info btn-sm">Back</a>
-                                <a href="/admin/user/edit/{{$user->id}}" class="btn btn-success btn-sm">Edit</a>
+                                <a href="/admin/user/edit/{{$user->username}}" class="btn btn-success btn-sm">Edit</a>
                                 <form action="/admin/user/delete/{{$user->id}}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf

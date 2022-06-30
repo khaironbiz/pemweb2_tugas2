@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Organisasi_profesi;
 use App\Models\Profesi;
 use Illuminate\Http\Request;
@@ -46,9 +47,16 @@ class OrganisasiController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_op' => 'required',
+            'singkatan' => 'required|unique:organisasi_profesis,singkatan',
+            'pimpinan' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+            'telp' => 'required',
+            'hp' => 'required',
+            'web' => 'required',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('profesi')
+            return redirect()->route('organisasi')
                 ->withErrors($validator)
                 ->withInput();
         }else {
@@ -99,7 +107,9 @@ class OrganisasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data       = Organisasi_profesi::findOrFail($id);
+        $qrcode     = QrCode::size(400)->generate($data->nama_op);
+        return view('qrcode',compact('qrcode'));
     }
 
     /**
