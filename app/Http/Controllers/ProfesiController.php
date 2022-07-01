@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use App\Models\Profesi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use PDF;
+
 
 class ProfesiController extends Controller
 {
@@ -21,6 +24,8 @@ class ProfesiController extends Controller
         //
         $data = [
             'title'     => 'Daftar Profesi',
+            'class'     => 'Profesi',
+            'sub_class' => 'Index',
             'profesi'   => Profesi::all()->sortBy('nama_profesi'),
         ];
         return view('admin.profesi.index', $data);
@@ -82,11 +87,26 @@ class ProfesiController extends Controller
         $organisasi = Organisasi_profesi::where('id_profesi', $profesi->id)->get();
         $data = [
             'title'     => 'Daftar Profesi',
+            'class'     => 'Profesi',
+            'sub_class' => 'Show',
             'profesi'   => $profesi,
             'organisasi'=> $organisasi,
-
         ];
         return view('admin.profesi.detail', $data);
+    }
+    public function pdf(){
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML('<h1>Test</h1>');
+//        return $pdf->stream();
+
+        $data = [
+            'title'     => 'Daftar Profesi',
+            'class'     => 'Profesi',
+            'sub_class' => 'Index',
+            'profesi'   => Profesi::all()->sortBy('nama_profesi'),
+        ];
+        $pdf = PDF::loadview('admin.profesi.index',$data);
+        return $pdf->stream();
     }
 
     /**

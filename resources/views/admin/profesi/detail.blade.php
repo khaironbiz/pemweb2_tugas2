@@ -25,9 +25,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">{{$title}}</h3>
-                            </div>
+                            @include('admin.sub_menu.user')
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
@@ -85,17 +83,8 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h6>Sub Profesi</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <ul>
-
-                                                    <li>Makan Siang</li>
-                                                    <li>Makan Siang</li>
-                                                </ul>
-                                            </div>
+                                        <div class="visible-print text-center">
+                                            {!! QrCode::size(100)->generate(Request::url()); !!}
                                         </div>
 
                                     </div>

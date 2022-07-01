@@ -15,6 +15,8 @@ class UserController extends Controller
     public function index(){
         $data = [
             'title'     => "Daftar User",
+            'class'     => 'User',
+            'sub_class' => 'Index',
             'user'      => User::all()
         ];
         return view('admin.user.index', $data);
@@ -37,8 +39,6 @@ class UserController extends Controller
         $nama_file_baru = uniqid().$file->getClientOriginalName();
         $file->move($tujuan_upload,$nama_file_baru);
 
-
-
         $user = new User();
         $user->name = $request->name;
         $user->username = Str::slug($request->username, '-');
@@ -57,6 +57,8 @@ class UserController extends Controller
 
         $data = [
             'title'     => "Detail User",
+            'class'     => 'User',
+            'sub_class' => 'Show',
             'user'      => User::firstWhere('username', $username),
         ];
         return view('admin.user.detail', $data);

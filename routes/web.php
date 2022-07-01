@@ -24,7 +24,7 @@ Route::get('/admin/data/add',[App\Http\Controllers\HomeController::class,'create
 Route::post('/admin/data/insert-data',[App\Http\Controllers\HomeController::class,'store'])->name('example.insert');
 Route::get('/admin/data/{id}',[App\Http\Controllers\HomeController::class,'edit'])->name('example.edit');
 Route::get('/admin/data/show/{id}',[App\Http\Controllers\HomeController::class,'show'])->name('example.edit');
-Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::class,'update'])->name('example.insert');
+Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::class,'update'])->name('example.update');
 
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');
@@ -36,6 +36,7 @@ Route::delete('/admin/user/delete/{id}',[UserController::class,'delete']);
 
 //profesi
 Route::get('/admin/profesi',[ProfesiController::class,'index'])->name('profesi');
+Route::get('/admin/profesi/pdf',[ProfesiController::class,'pdf'])->name('profesi.pdf');
 Route::post('/admin/profesi/store',[ProfesiController::class,'store']);
 Route::get('/admin/profesi/show/{id}',[ProfesiController::class,'show']);
 

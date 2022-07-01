@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
- 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -39,22 +39,15 @@
     <img class="animation__shake" src="{{('assets//img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
   </div> -->
 
- <!-- Navbar -->
-@include ('admin.navbar.main-navbar')
-
-
-
-<!-- Side Navbar -->
-@include ('admin.navbar.side-navbar')
-
-
-<!-- Main content -->
-@yield ('content')
-
-  <!-- /.content-wrapper -->
-  @include ('admin.footer.main-footer')
-
-  <!-- Control Sidebar -->
+    <!-- Navbar -->
+    @include ('admin.navbar.main-navbar')
+    <!-- Side Navbar -->
+    @include ('admin.navbar.side-navbar')
+    <!-- Main content -->
+    @yield ('content')
+    <!-- /.content-wrapper -->
+    @include ('admin.footer.main-footer')
+    <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
