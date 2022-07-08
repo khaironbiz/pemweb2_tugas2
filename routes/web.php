@@ -25,6 +25,7 @@ Route::post('/admin/data/insert-data',[App\Http\Controllers\HomeController::clas
 Route::get('/admin/data/{id}',[App\Http\Controllers\HomeController::class,'edit'])->name('example.edit');
 Route::get('/admin/data/show/{id}',[App\Http\Controllers\HomeController::class,'show'])->name('example.edit');
 Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::class,'update'])->name('example.update');
+Route::post('/admin/data/delete/{id}',[App\Http\Controllers\HomeController::class,'destroy'])->name('example.destroy');
 
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');

@@ -28,9 +28,7 @@
                         <!-- /.card -->
 
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">{{$title}}</h3>
-                            </div>
+                            @include('admin.sub_menu.user')
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if ($errors->any())

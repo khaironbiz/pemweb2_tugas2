@@ -88,8 +88,54 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a href="{{url('/admin/data')}}" class="btn btn-danger">Back</a>
-                                <a href= "{{ url('/admin/data/' . $example->username)}}" button type="button" class="btn btn-success">Edit</a>
+                                <div class="row">
+                                    <div class="col-4"><a href="{{url('/admin/data')}}" class="btn btn-info">Back</a></div>
+                                    <div class="col-4 text-center"><a href= "{{ url('/admin/data/' . $example->username)}}" button type="button" class="btn btn-success">Edit</a></div>
+                                    <div class="col-4 text-right">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin Akan Menghapus Data?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form id="quickForm" action="/admin/data/delete/{{$example->id}}" method="POST">
+                                                @csrf
+                                                <div class="modal-body">
+                                                <div class="row">
+                                                    <label class="col-md-3">Nama</label>
+                                                    <div class="col-md-9">: {{ $example->nama }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3">NIK</label>
+                                                    <div class="col-md-9">: {{ $example->nik }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3">UserName</label>
+                                                    <div class="col-md-9">: {{ $example->username }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12"><input type="checkbox" required name="id_data"> Hapus Data Ini</div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

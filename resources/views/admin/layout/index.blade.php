@@ -71,7 +71,6 @@
                     <td>{!! $exp->alamat !!} </td>
                     <td>
                         <a href= "{{ url('/admin/data/show/' . $exp->username)}}" button type="button" class="btn btn-info">Detail</a>
-                        <a href= "{{ url('admin/delete-data/' .$exp->id) }}"button type="button" class="btn btn-danger" onclick="return confirm('Apakah anda akan memghapus ???')">Hapus</a>
                     </td>
 
                   </tr>

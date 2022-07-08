@@ -122,7 +122,12 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="row">
+                                        <div class="col-6 text-right"><a href="/admin/data/show/{{$example->username}}" class="btn btn-info">Back</a></div>
+                                        <div class="col-6 ">
+                                            <button type="submit" class="btn btn-success">Update</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>

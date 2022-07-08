@@ -21,6 +21,8 @@ class OrganisasiController extends Controller
         //
         $data = [
             'title'         => 'Daftar Organisasi Profesi',
+            'class'         => 'Organisasi',
+            'sub_class'     => 'index',
             'profesi'       => Profesi::all()->sortBy('nama_profesi'),
             'organisasi'    => Organisasi_profesi::all()->sortBy('nama_op'),
         ];
@@ -92,9 +94,10 @@ class OrganisasiController extends Controller
     public function show($slug)
     {
         $data = [
-            'title'     => 'Daftar Organisasi Profesi',
-
-            'organisasi'   => Organisasi_profesi::firstWhere('slug_op', $slug),
+            'title'         => 'Daftar Organisasi Profesi',
+            'class'         => 'Organisasi',
+            'sub_class'     => 'Show',
+            'organisasi'    => Organisasi_profesi::firstWhere('slug_op', $slug),
         ];
         return view('admin.organisasi.show', $data);
     }
