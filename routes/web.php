@@ -54,3 +54,5 @@ Route::get('/admin/organisasi',[OrganisasiController::class,'index'])->name('org
 Route::get('/admin/organisasi/show/{id}',[OrganisasiController::class,'show'])->name('organisasi.show');
 Route::post('/admin/organisasi/store',[OrganisasiController::class,'store']);
 Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generate');
+
+//

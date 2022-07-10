@@ -11,8 +11,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/profesi/')}}">{{$class}}</a></li>
+                            <li class="breadcrumb-item active">{{$sub_class}}</li>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-10">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
@@ -42,9 +42,10 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        @foreach($organisasi as $organisasi)
                                         <div class="card">
                                             <div class="card-body">
-                                                @foreach($organisasi as $organisasi)
                                                 <div class="row">
                                                     <label class="col-md-4 col-lg-3">Organisasi</label>
                                                     <div class="col-md-8 col-lg-9">: {{$organisasi->nama_op}}</div>
@@ -77,12 +78,11 @@
                                                     <label class="col-md-4 col-lg-3">Telp</label>
                                                     <div class="col-md-8 col-lg-9">: {{$organisasi->telp}}</div>
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
-
+                                        @endforeach
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="visible-print text-center">
                                             {!! QrCode::size(100)->generate(Request::url()); !!}
                                         </div>

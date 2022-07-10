@@ -11,8 +11,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/organisasi/')}}">{{$class}}</a></li>
+                            <li class="breadcrumb-item active">{{$sub_class}}</li>
                         </ol>
                     </div>
                 </div>
@@ -29,8 +29,11 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <div class="card">
+                                            <div class="card-header">
+                                                <b>Organisasi Profesi</b>
+                                            </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <label class="col-md-4 col-lg-3">Profesi</label>
@@ -70,16 +73,14 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h6>Sub Profesi</h6>
+                                                <b>Sub Organisasi Profesi</b>
                                             </div>
                                             <div class="card-body">
                                                 <ul>
-
                                                     <li>Makan Siang</li>
                                                     <li>Makan Siang</li>
                                                 </ul>
