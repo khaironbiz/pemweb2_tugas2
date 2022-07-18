@@ -27,6 +27,10 @@ Route::get('/admin/data/show/{id}',[App\Http\Controllers\HomeController::class,'
 Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::class,'update'])->name('example.update');
 Route::post('/admin/data/delete/{id}',[App\Http\Controllers\HomeController::class,'destroy'])->name('example.destroy');
 
+//login
+Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login');;
+Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
+
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');
 Route::post('/admin/user/store',[UserController::class,'store']);

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Example;
 use Illuminate\Support\Facades\Validator;
 
-class HomeController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,89 +18,28 @@ class HomeController extends Controller
     {
 
         $data = [
-            'title'     => 'Dashboard',
-            'example'   => Example::all(),
+            'title'     => 'Login',
         ];
-        return view('admin.layout.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     *
-     *
-     */
-    public function dashboard (){
-        $data   = [
-            'title' => 'Home'
-        ];
-        //
-        return view('admin.layout.dashboard', $data);
-    }
-    public function login (){
-        $data   = [
-            'title' => 'Login'
-        ];
-        //
         return view('layouts.login', $data);
     }
 
-    public function create()
+    public function login(Request $request)
     {
-        //
-
-        $data   = [
-            'title'   => 'Tambah data',
-        ];
-        return view('admin.layout.add', $data);
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-
-        $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'nik' => 'required|size:16',
-            'tl' => 'required',
-            'jk' => 'required',
-            'status' => 'required',
-            'username' => 'required|max:50|unique:examples,username',
-            'email' => 'required|max:150|unique:examples,email',
-            'hp' => 'required|max:15|unique:examples,hp',
+        $credentials = $request->validate([
+            'email'     => ['required', 'email'],
+            'password'  => ['required'],
         ]);
-        if ($validator->fails()) {
-            return redirect()->route('example.data.add')
-                ->withErrors($validator)
-                ->withInput();
-        }else {
-            $example = new Example();
-            $example->nama = $request->get('nama');
-            $example->nik = $request->get('nik');
-            $example->tl = $request->get('tl');
-            $example->jk = $request->get('jk');
-            $example->status = $request->get('status');
-            $example->username = $request->get('username');
-            $example->email = $request->get('email');
-            $example->hp = $request->get('hp');
-            $example->alamat = $request->get('alamat');
 
-            $example->save();
-
-            if ($example) {
-                return redirect()->route('example.data')->with(['success' => 'data anda tersimpan']);
-            } else {
-                return redirect()->route('example.data')->with(['error' => 'data gagal tersimpan']);
-            }
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/admin');
+        }else{
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
         }
+
+
 
 
     }
