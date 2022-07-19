@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
 
         $data = [
-            'title'     => 'Dashboard',
+            'title'     => 'Data Nasabah',
             'example'   => Example::all(),
         ];
         return view('admin.layout.index', $data);

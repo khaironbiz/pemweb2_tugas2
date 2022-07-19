@@ -24,9 +24,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
                         <!-- /.card -->
-
                         <div class="card">
                             @include('admin.sub_menu.user')
                             <form form id="quickForm" action="/admin/user/update/{{$user->id}}" method="POST" enctype="multipart/form-data">
@@ -50,44 +48,43 @@
                                             </button>
                                         </div>
                                     @endif
-
-                                    <div class="row mb-1">
-                                        <label class="col-sm-2">Nama</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nama" value="{{$user->name}}">
+                                        <div class="row mb-1">
+                                            <label class="col-sm-2">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="nama" value="{{$user->name}}">
+                                            </div>
                                         </div>
-                                    </div><div class="row mb-1">
-                                        <label class="col-sm-2">UserName</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="username" value="{{$user->username}}">
+                                        <div class="row mb-1">
+                                            <label class="col-sm-2">UserName</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="username" value="{{$user->username}}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-1">
-                                        <label class="col-sm-2">Email</label>
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" name="email" value="{{$user->email}}">
+                                        <div class="row mb-1">
+                                            <label class="col-sm-2">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" name="email" value="{{$user->email}}">
+                                            </div>
                                         </div>
-                                    </div>
                                         <div class="row">
                                             <label class="col-sm-2">Foto</label>
-                                            <div class="col-sm-3"><input class="form-control" type="file" name="file"></div>
-                                            <div class="col-sm-7"> <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-75"></div>
+                                                <div class="col-sm-3"><input class="form-control" type="file" name="file"></div>
+                                                <div class="col-sm-7"> <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-50"></div>
                                         </div>
-
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer text-center">
-                                    <a href="/admin/user/show/{{$user->username}}" class="btn btn-info btn-sm">Back</a>
-                                    <button class="btn btn-sm btn-success" type="submit">Update</button>
-                                </div>
-                            </form>
-                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer text-center">
+                                        <a href="/admin/user/show/{{$user->username}}" class="btn btn-info btn-sm">Back</a>
+                                        <button class="btn btn-sm btn-success" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </div>
                         <!-- /.card -->
-                    </div>
+                        </div>
                     <!-- /.col -->
-                </div>
+                    </div>
                 <!-- /.row -->
-            </div>
+                </div>
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->

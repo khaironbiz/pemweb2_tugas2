@@ -7,6 +7,7 @@ use App\Models\Profesi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageServiceProvider;
 
@@ -14,7 +15,7 @@ class UserController extends Controller
 {
     public function index(){
         $data = [
-            'title'     => "Daftar User",
+            'title'     => "Data Karyawan",
             'class'     => 'User',
             'sub_class' => 'Index',
             'user'      => User::all()
@@ -43,7 +44,8 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->username = Str::slug($request->username, '-');
         $user->email = $request->email;
-        $user->password = sha1($request->password);
+        $user->password = hash::make($request->password);
+
         $user->foto = $nama_file_baru;
         $user->save();
 

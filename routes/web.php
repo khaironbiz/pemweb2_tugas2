@@ -30,6 +30,7 @@ Route::post('/admin/data/delete/{id}',[App\Http\Controllers\HomeController::clas
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login');;
 Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
+Route::get('/settings',[App\Http\Controllers\AuthController::class,'settings']);
 
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');
