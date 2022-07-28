@@ -10,7 +10,7 @@ class Example extends Model
     use HasFactory;
     protected $table = 'examples';
     protected $fillable = [
-        'nama', 'nik','jk','tl','status','username','email', 'hp','alamat',
+        'nama_depan', 'nama_belakang', 'nik','jk','tl','status','username','email', 'hp','alamat', 'password', 'foto',
     ];
 
 

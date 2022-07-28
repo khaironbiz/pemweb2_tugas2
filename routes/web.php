@@ -17,7 +17,7 @@ use App\Http\Controllers\OrganisasiProfesiController;
 |
 */
 
-Route::get('/',[App\Http\Controllers\HomeController::class,'dashboard']);
+
 Route::get('/admin',[App\Http\Controllers\HomeController::class,'dashboard']);
 Route::get('/admin/data',[App\Http\Controllers\HomeController::class,'index'])->name('example.data');
 Route::get('/admin/data/add',[App\Http\Controllers\HomeController::class,'create'])->name('example.data.add');
@@ -28,9 +28,9 @@ Route::post('/admin/data/update/{id}',[App\Http\Controllers\HomeController::clas
 Route::post('/admin/data/delete/{id}',[App\Http\Controllers\HomeController::class,'destroy'])->name('example.destroy');
 
 //login
-Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login');;
+Route::get('/',[App\Http\Controllers\AuthController::class,'index'])->name('login');
 Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
-Route::get('/settings',[App\Http\Controllers\AuthController::class,'settings']);
+Route::get('/settings',[App\Http\Controllers\AuthController::class,'settings'])->name('settings');
 
 //user
 Route::get('/admin/user',[UserController::class,'index'])->name('user');

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Example;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class HomeController extends Controller
 {
@@ -67,30 +69,41 @@ class HomeController extends Controller
         //
 
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'nik' => 'required|size:16',
-            'tl' => 'required',
-            'jk' => 'required',
-            'status' => 'required',
-            'username' => 'required|max:50|unique:examples,username',
-            'email' => 'required|max:150|unique:examples,email',
-            'hp' => 'required|max:15|unique:examples,hp',
+            'nama_depan'    => 'required',
+            'nama_belakang' => 'required',
+            'nik'           => 'required|size:16',
+            'tl'            => 'required',
+            'jk'            => 'required',
+            'file'          => 'required',
+            'password'      => ['required', 'confirmed', Password::min(8)],
+            'status'        => 'required',
+            'username'      => 'required|max:50|unique:examples,username',
+            'email'         => 'required|max:150|unique:examples,email',
+            'hp'            => 'required|max:15|unique:examples,hp',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('example.data.add')
-                ->withErrors($validator)
-                ->withInput();
+            return redirect()->route('example.data.add')->withErrors($validator)->withInput();
         }else {
-            $example = new Example();
-            $example->nama = $request->get('nama');
-            $example->nik = $request->get('nik');
-            $example->tl = $request->get('tl');
-            $example->jk = $request->get('jk');
-            $example->status = $request->get('status');
-            $example->username = $request->get('username');
-            $example->email = $request->get('email');
-            $example->hp = $request->get('hp');
-            $example->alamat = $request->get('alamat');
+            // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('file');
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'assets/upload/images/nasabah/';
+            // upload file
+            $nama_file_baru = uniqid().$file->getClientOriginalName();
+            $file->move($tujuan_upload,$nama_file_baru);
+            $example                = new Example();
+            $example->nama_depan    = $request->get('nama_depan');
+            $example->nama_belakang = $request->get('nama_belakang');
+            $example->nik       = $request->get('nik');
+            $example->tl        = $request->get('tl');
+            $example->jk        = $request->get('jk');
+            $example->status    = $request->get('status');
+            $example->username  = $request->get('username');
+            $example->email     = $request->get('email');
+            $example->hp        = $request->get('hp');
+            $example->alamat    = $request->get('alamat');
+            $example->password  = hash::make($request->password);
+            $example->foto      = $nama_file_baru;
 
             $example->save();
 
@@ -147,31 +160,49 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'nik' => 'required|size:16',
-            'tl' => 'required',
-            'jk' => 'required',
-            'status' => 'required',
-            'username' => 'required|max:50',
-            'email' => 'required|max:150',
-            'hp' => 'required|max:15',
+            'nama_depan'    => 'required',
+            'nama_belakang' => 'required',
+            'nik'           => 'required|size:16',
+            'tl'            => 'required',
+            'jk'            => 'required',
+            'status'        => 'required',
+            'username'      => 'required|max:50',
+            'email'         => 'required|max:150',
+            'hp'            => 'required|max:15',
         ]);
         if ($validator->fails()) {
             return redirect()->route('example.data.add')
                 ->withErrors($validator)
                 ->withInput();
         }else {
-            $example        = Example::find($id);
-            $example->nama  = $request->get('nama');
-            $example->nik   = $request->get('nik');
-            $example->tl    = $request->get('tl');
-            $example->jk    = $request->get('jk');
-            $example->status = $request->get('status');
-            $example->username = $request->get('username');
-            $example->email = $request->get('email');
-            $example->hp = $request->get('hp');
-            $example->alamat = $request->get('alamat');
-            $example->save();
+            $file                   = $request->file('file');
+            $example                = Example::find($id);
+            $example->nama_depan    = $request->get('nama_depan');
+            $example->nama_belakang = $request->get('nama_belakang');
+            $example->nik           = $request->get('nik');
+            $example->tl            = $request->get('tl');
+            $example->jk            = $request->get('jk');
+            $example->status        = $request->get('status');
+            $example->username      = $request->get('username');
+            $example->email         = $request->get('email');
+            $example->hp            = $request->get('hp');
+            $example->alamat        = $request->get('alamat');
+            if($file != ''){
+                // isi dengan nama folder tempat kemana file diupload
+                $tujuan_upload      = 'assets/upload/images/nasabah/';
+                $file_lama          = $tujuan_upload.$example->foto;
+                unlink($file_lama);
+
+
+                // upload file
+                $nama_file_baru = uniqid().$file->getClientOriginalName();
+                $file->move($tujuan_upload,$nama_file_baru);
+                $example->foto = $nama_file_baru;
+                $example->save();
+            }else{
+                $example->save();
+            }
+
 
             if ($example) {
                 return redirect()->route('example.data')->with(['success' => 'Data sukses disimpan']);

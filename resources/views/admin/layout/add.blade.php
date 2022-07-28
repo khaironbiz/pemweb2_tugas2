@@ -42,17 +42,22 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="{{ url('/admin/data/insert-data') }}"
-              method="POST">
+              <form id="quickForm" action="{{ url('/admin/data/insert-data') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row mb-1">
-                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama</label>
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama Depan</label>
                                 <div class="col-md-8 col-lg-9 col-xl-10">
-                                    <input type="text"class="form-control" name="nama" placeholder="Masukan nama" value="{{ old('nama') }}">
+                                    <input type="text"class="form-control" name="nama_depan" placeholder="Masukan nama" value="{{ old('nama_depan') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama Belakang</label>
+                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                    <input type="text"class="form-control" name="nama_belakang" placeholder="Masukan nama" value="{{ old('nama_belakang') }}">
                                 </div>
                             </div>
                             <div class="row mb-1">
@@ -90,8 +95,20 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">HP</label>
+                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                    <input type="number"class="form-control" name="hp" placeholder="Masukan nomor HP" value="{{ old('hp') }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="row mb-1">
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Alamat</label>
+                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                    <textarea class="form-control" name="alamat">{{ old('alamat') }}</textarea>
+                                </div>
+                            </div>
                             <div class="row mb-1">
                                 <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">User Name</label>
                                 <div class="col-md-8 col-lg-9 col-xl-10">
@@ -105,15 +122,21 @@
                                 </div>
                             </div>
                             <div class="row mb-1">
-                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">HP</label>
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Password</label>
                                 <div class="col-md-8 col-lg-9 col-xl-10">
-                                    <input type="number"class="form-control" name="hp" placeholder="Masukan nomor HP" value="{{ old('hp') }}">
+                                    <input type="password"class="form-control" name="password" placeholder="Masukan password" value="{{ old('password') }}">
                                 </div>
                             </div>
                             <div class="row mb-1">
-                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Alamat</label>
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Re Password</label>
                                 <div class="col-md-8 col-lg-9 col-xl-10">
-                                    <textarea class="form-control" name="alamat">{{ old('alamat') }}</textarea>
+                                    <input type="password"class="form-control" name="password_confirmation" placeholder="Masukan kembali password" value="{{ old('password_confirmation') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Foto</label>
+                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                    <input type="file"class="form-control" name="file" placeholder="Upload Foto" value="{{ old('file') }}">
                                 </div>
                             </div>
                         </div>

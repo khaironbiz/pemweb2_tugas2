@@ -108,6 +108,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-1">
+                                                    <label class="col-sm-2 col-form-label">Phone</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text"class="form-control" name="phone_cell">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-1">
                                                     <label class="col-sm-2 col-form-label">Password</label>
                                                     <div class="col-sm-10">
                                                         <input type="password"class="form-control" name="password">

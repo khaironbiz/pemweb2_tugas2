@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\ImageServiceProvider;
+
 
 class UserController extends Controller
 {
     public function index(){
+
         $data = [
             'title'     => "Data Karyawan",
             'class'     => 'User',
@@ -25,11 +28,11 @@ class UserController extends Controller
     public function store(Request $request){
         //
         $validated = $request->validate([
-            'name' => 'required',
-            'username' => 'required|alpha_num',
-            'email' => 'required|email:rfc,dns',
-            'password' => 'required',
-            'file' => 'required',
+            'name'      => 'required',
+            'username'  => 'required|alpha_num',
+            'email'     => 'required|email:rfc,dns',
+            'password'  => 'required',
+            'file'      => 'required',
         ]);
 
         // menyimpan data file yang diupload ke variabel $file
@@ -44,6 +47,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->username = Str::slug($request->username, '-');
         $user->email = $request->email;
+        $user->phone_cell = $request->phone_cell;
         $user->password = hash::make($request->password);
 
         $user->foto = $nama_file_baru;
@@ -96,9 +100,21 @@ class UserController extends Controller
             //jika ada gambar yang diupload
             if($file !=''){
                 // isi dengan nama folder tempat kemana file diupload
-                $tujuan_upload = 'assets/upload/images/user/';
+                $tujuan_upload  = 'assets/upload/images/user/';
+                $resize         = 'assets/upload/images/user/resize/';
+                $file_resize    = $resize.$data->foto;
                 $file_lama     = $tujuan_upload.$data->foto;
                 unlink($file_lama);
+//                unlink($file_resize);
+                //resize image
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $img = Image::make($file);
+                if (Image::make($file)->width() > 100) {
+                    $img->resize(100, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
+                $img->save(public_path($resize) . $filename);
                 // upload file
                 $nama_file_baru = uniqid().$file->getClientOriginalName();
                 $file->move($tujuan_upload,$nama_file_baru);

@@ -34,7 +34,7 @@
                                     <div class="col-md-6">
                                         <div class="row mb-1">
                                             <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama</label>
-                                            <div class="col-md-8 col-lg-9 col-xl-10">{{ $example->nama }}</div>
+                                            <div class="col-md-8 col-lg-9 col-xl-10">{{ $example->nama_depan }} {{ $example->nama_belakang }}</div>
                                         </div>
                                         <div class="row mb-1">
                                             <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Jenis Kelamin</label>

@@ -46,8 +46,8 @@
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-50"><br>
-                                                {{$user->name}}<br>
-                                                {{$user->username}}<br>
+                                                <b>{{$user->name}}</b><br>
+                                                {{$user->phone_cell}}<br>
                                                 {{$user->email}}
 
                                             </div>

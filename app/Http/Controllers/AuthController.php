@@ -27,9 +27,9 @@ class AuthController extends Controller
             'password'  => ['required', 'min:6'],
         ]);
         if(Auth::attempt($credentials)){
-            return redirect()->route('example.data')->with(['success' => 'Selamat anda berhasil login']);
+            return redirect()->route('settings')->with(['success' => 'Selamat anda berhasil login']);
         }else{
-            return redirect()->route('login')->with('status', 'Login Failed please check again');
+            return redirect()->route('login')->with('status', 'Login failed!! please check again')->withInput();;
         }
 
     }

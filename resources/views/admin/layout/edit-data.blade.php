@@ -47,12 +47,18 @@
                                 @csrf
 
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row justify-content-center">
                                         <div class="col-md-6">
                                             <div class="row mb-1">
-                                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama</label>
+                                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama Depan</label>
                                                 <div class="col-md-8 col-lg-9 col-xl-10">
-                                                    <input type="text"class="form-control" name="nama" value="{{ $example->nama }}">
+                                                    <input type="text"class="form-control" name="nama_depan" value="{{ $example->nama_depan }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Nama Belakang</label>
+                                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                                    <input type="text"class="form-control" name="nama_belakang" value="{{ $example->nama_belakang }}">
                                                 </div>
                                             </div>
                                             <div class="row mb-1">
@@ -116,6 +122,15 @@
                                                     <textarea class="form-control" name="alamat">{{ $example->alamat }}</textarea>
                                                 </div>
                                             </div>
+                                            <div class="row mb-1">
+                                                <label class="col-md-4 col-lg-3 col-xl-2 col-form-label">Update Foto</label>
+                                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                                    <input type="file"class="form-control" name="file">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <img src="/assets/upload/images/nasabah/{{ $example->foto }}" class="w-50">
                                         </div>
 
                                     </div>

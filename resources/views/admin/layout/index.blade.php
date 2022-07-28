@@ -66,7 +66,7 @@
                   @foreach($example as $exp)
                   <tr>
                     <td>{{$x++}}</td>
-                    <td>{{  $exp->nama }}
+                    <td>{{  $exp->nama_depan }} {{  $exp->nama_belakang }}
                     </td>
                     <td>{!! $exp->alamat !!} </td>
                     <td>

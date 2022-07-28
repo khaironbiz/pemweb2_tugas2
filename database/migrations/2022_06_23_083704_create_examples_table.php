@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('examples', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('nik')->unique();
-            $table->string('nama',255);
+            $table->string('nama_depan',255);
+            $table->string('nama_belakang',255);
             $table->date('tl');
             $table->char('jk', 2);
             $table->integer('status');
@@ -24,6 +25,8 @@ return new class extends Migration
             $table->string('email',150)->unique();
             $table->string('hp',25)->unique();
             $table->string('alamat',500);
+            $table->string('password');
+            $table->string('foto');
             $table->timestamps();
         });
     }
