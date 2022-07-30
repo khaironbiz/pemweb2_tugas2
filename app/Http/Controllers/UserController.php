@@ -104,7 +104,7 @@ class UserController extends Controller
                 $resize         = 'assets/upload/images/user/resize/';
                 $file_resize    = $resize.$data->foto;
                 $file_lama     = $tujuan_upload.$data->foto;
-                unlink($file_lama);
+//                unlink($file_lama);
 //                unlink($file_resize);
                 //resize image
                 $filename = time() . '.' . $file->getClientOriginalExtension();

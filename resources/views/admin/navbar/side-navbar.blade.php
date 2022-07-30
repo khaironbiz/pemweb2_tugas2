@@ -4,7 +4,7 @@
 
     <a href="/" class="brand-link">
       <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">PT.LEASING</span>
+      <span class="brand-text font-weight-light">{{env('APP_NAME')}}</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -29,14 +29,17 @@
                     <a href="{{ url('/admin/user')}}" class="nav-link"><i class="far fa-user nav-icon"></i> Data Karyawan</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/admin/data')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Data Nasabah</a>
+                    <a href="{{ url('/admin/customer')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Data Nasabah</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/settings')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Settings</a>
+                    <a href="{{ url('/profile')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Settings</a>
                 </li>
                 <hr>
                 <li class="nav-item text-center">
-                    <a href="{{ url('/admin/data')}}" class="nav-link"> Logout</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link btn-danger text-white">Logout</button>
+                    </form>
                 </li>
 
 

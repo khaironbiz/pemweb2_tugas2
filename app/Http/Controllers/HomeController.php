@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Home;
+use App\Models\Provinsi;
+use App\Models\Kota;
+use App\Models\Web;
 use Illuminate\Http\Request;
-use App\Models\Example;
+use App\Http\Requests\StoreHomeRequest;
+use App\Http\Requests\UpdateHomeRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
+use Image;
 
 class HomeController extends Controller
 {
@@ -19,208 +25,174 @@ class HomeController extends Controller
     {
 
         $data = [
-            'title'     => 'Data Nasabah',
-            'example'   => Example::all(),
+            'title'     => 'Home',
+            'navbar'    => 'home',
         ];
-        return view('admin.layout.index', $data);
+        return view('landing.all.index', $data);
+    }
+    public function web()
+    {
+
+        $data = [
+            'title'     => 'Web Setting',
+            'navbar'    => 'web',
+            'provinsi'  => Provinsi::all(),
+            'kota'      => Kota::all(),
+
+
+        ];
+        return view('landing.settings.web', $data);
+    }
+    public function about()
+    {
+
+        $data = [
+            'title'     => 'About',
+            'navbar'    => 'about',
+        ];
+        return view('landing.about.about', $data);
+    }
+    public function services()
+    {
+
+        $data = [
+            'title'     => 'Services',
+            'navbar'    => 'services',
+        ];
+        return view('landing.services.services', $data);
+    }
+    public function contact()
+    {
+
+        $data = [
+            'title'     => 'Contact Us',
+            'navbar'    => 'contact',
+        ];
+        return view('landing.contact.contact', $data);
+    }
+    public function foto()
+    {
+
+        $data = [
+            'title'     => 'Media Foto',
+            'navbar'    => 'media',
+        ];
+        return view('landing.foto.foto', $data);
+    }
+    public function video()
+    {
+
+        $data = [
+            'title'     => 'Media Video',
+            'navbar'    => 'media',
+        ];
+        return view('landing.video.video', $data);
+    }
+    public function events()
+    {
+
+        $data = [
+            'title'     => 'Events',
+            'navbar'    => 'events',
+        ];
+        return view('landing.events.events', $data);
+    }
+    public function settings(Request $request)
+    {
+
+        $validated = $request->validate([
+            'nama_web' => 'required',
+            'singkatan' => 'required',
+            'desc' => 'required',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+
+        $image = $request->file('logo');
+        $input['imagename'] = time().'.'.$image->extension();
+        $destinationPath = public_path('/assets/upload/images/landing/thumbs/');
+        $img = Image::make($image->path());
+        $img->resize(100, 100, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['imagename']);
+
+        $destinationPath = public_path('/assets/upload/images/landing/');
+        $image->move($destinationPath, $input['imagename']);
+        $web = new Web();
+        $web->nama_web  = $request->nama_web;
+        $web->singkatan = Str::slug($request->singkatan, '-');
+        $web->deskripsi = $request->desc;
+        $web->key       = sha1(uniqid());
+        $web->save();
+
+
+        return back()
+            ->with('status','Image Upload successful');
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     *
-     *
      */
-    public function dashboard (){
-        $data   = [
-            'title' => 'Home'
-        ];
-        //
-        return view('admin.layout.dashboard', $data);
-    }
-    public function login (){
-        $data   = [
-            'title' => 'Login'
-        ];
-        //
-        return view('layouts.login', $data);
-    }
-
     public function create()
     {
         //
-
-        $data   = [
-            'title'   => 'Tambah data',
-        ];
-        return view('admin.layout.add', $data);
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreHomeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHomeRequest $request)
     {
         //
-
-        $validator = Validator::make($request->all(), [
-            'nama_depan'    => 'required',
-            'nama_belakang' => 'required',
-            'nik'           => 'required|size:16',
-            'tl'            => 'required',
-            'jk'            => 'required',
-            'file'          => 'required',
-            'password'      => ['required', 'confirmed', Password::min(8)],
-            'status'        => 'required',
-            'username'      => 'required|max:50|unique:examples,username',
-            'email'         => 'required|max:150|unique:examples,email',
-            'hp'            => 'required|max:15|unique:examples,hp',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->route('example.data.add')->withErrors($validator)->withInput();
-        }else {
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('file');
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'assets/upload/images/nasabah/';
-            // upload file
-            $nama_file_baru = uniqid().$file->getClientOriginalName();
-            $file->move($tujuan_upload,$nama_file_baru);
-            $example                = new Example();
-            $example->nama_depan    = $request->get('nama_depan');
-            $example->nama_belakang = $request->get('nama_belakang');
-            $example->nik       = $request->get('nik');
-            $example->tl        = $request->get('tl');
-            $example->jk        = $request->get('jk');
-            $example->status    = $request->get('status');
-            $example->username  = $request->get('username');
-            $example->email     = $request->get('email');
-            $example->hp        = $request->get('hp');
-            $example->alamat    = $request->get('alamat');
-            $example->password  = hash::make($request->password);
-            $example->foto      = $nama_file_baru;
-
-            $example->save();
-
-            if ($example) {
-                return redirect()->route('example.data')->with(['success' => 'data anda tersimpan']);
-            } else {
-                return redirect()->route('example.data')->with(['error' => 'data gagal tersimpan']);
-            }
-        }
-
-
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+    public function show(Home $home)
     {
-        $data   = [
-            'title'   => 'Update data',
-            'example' => Example::firstWhere('username', $username),
-        ];
-        return view('admin.layout.show-data', $data);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Home  $home
      * @return \Illuminate\Http\Response
      */
-
-    public function edit($username)
+    public function edit(Home $home)
     {
-
-        $data   = [
-            'title'   => 'Update data',
-            'example' => Example::firstWhere('username', $username),
-        ];
-        return view('admin.layout.edit-data', $data);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateHomeRequest  $request
+     * @param  \App\Models\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateHomeRequest $request, Home $home)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_depan'    => 'required',
-            'nama_belakang' => 'required',
-            'nik'           => 'required|size:16',
-            'tl'            => 'required',
-            'jk'            => 'required',
-            'status'        => 'required',
-            'username'      => 'required|max:50',
-            'email'         => 'required|max:150',
-            'hp'            => 'required|max:15',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->route('example.data.add')
-                ->withErrors($validator)
-                ->withInput();
-        }else {
-            $file                   = $request->file('file');
-            $example                = Example::find($id);
-            $example->nama_depan    = $request->get('nama_depan');
-            $example->nama_belakang = $request->get('nama_belakang');
-            $example->nik           = $request->get('nik');
-            $example->tl            = $request->get('tl');
-            $example->jk            = $request->get('jk');
-            $example->status        = $request->get('status');
-            $example->username      = $request->get('username');
-            $example->email         = $request->get('email');
-            $example->hp            = $request->get('hp');
-            $example->alamat        = $request->get('alamat');
-            if($file != ''){
-                // isi dengan nama folder tempat kemana file diupload
-                $tujuan_upload      = 'assets/upload/images/nasabah/';
-                $file_lama          = $tujuan_upload.$example->foto;
-                unlink($file_lama);
-
-
-                // upload file
-                $nama_file_baru = uniqid().$file->getClientOriginalName();
-                $file->move($tujuan_upload,$nama_file_baru);
-                $example->foto = $nama_file_baru;
-                $example->save();
-            }else{
-                $example->save();
-            }
-
-
-            if ($example) {
-                return redirect()->route('example.data')->with(['success' => 'Data sukses disimpan']);
-            } else {
-                return redirect()->route('example.data')->with(['error' => 'data gagal tersimpan']);
-            }
-        }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Home $home)
     {
-        $example        = Example::destroy($id);
-        return redirect()->route('example.data')->with(['success' => 'Data sukses dihapus']);
+        //
     }
 }
