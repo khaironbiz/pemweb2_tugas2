@@ -18,8 +18,8 @@ use App\Http\Controllers\OrganisasiProfesiController;
 |
 */
 
-
-Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
+//landing
+Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('root');
 Route::get('/home',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/web',[App\Http\Controllers\HomeController::class,'web'])->name('web');
 Route::post('/settings',[App\Http\Controllers\HomeController::class,'settings'])->name('settings');
@@ -29,6 +29,19 @@ Route::get('/home/events',[App\Http\Controllers\HomeController::class,'events'])
 Route::get('/home/foto',[App\Http\Controllers\HomeController::class,'foto'])->name('home.foto');
 Route::get('/home/video',[App\Http\Controllers\HomeController::class,'video'])->name('home.video');
 Route::get('/home/contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
+
+//wilayah indonesia
+Route::get('/wilayah',[App\Http\Controllers\HomeController::class,'wilayah'])->name('home.wilayah');
+Route::get('/daerah/kabupatenkota/{provinsi}',[App\Http\Controllers\HomeController::class,'kabupatenkota'])->name('home.kabupatenkota');
+Route::get('/daerah/kecamatan/{kabupatenkota}',[App\Http\Controllers\HomeController::class,'kecamatan'])->name('home.kecamatan');
+Route::get('/daerah/kelurahan/{kecamatan}',[App\Http\Controllers\HomeController::class,'kelurahan'])->name('home.kelurahan');
+
+
+//ajax wilayah
+Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::get('cities', 'DependentDropdownController@cities')->name('cities');
+Route::get('districts', 'DependentDropdownController@districts')->name('districts');
+Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login')->middleware('guest');
@@ -78,3 +91,4 @@ Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generat
 
 //website
 Route::get('/admin/website',[WebController::class,'admin'])->name('web_admin')->middleware('auth');
+

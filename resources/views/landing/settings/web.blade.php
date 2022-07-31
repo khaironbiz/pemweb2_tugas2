@@ -87,10 +87,10 @@
                             <div class="mb-2 row">
                                 <div class="col-md-6">
                                     <label for="provinsi" class="form-label">Provinsi</label>
-                                    <select class="form-control @error('provinsi')is-invalid @enderror" name="provinsi" required>
+                                    <select class="form-control @error('provinsi')is-invalid @enderror" name="provinsi" id="provinsi" required>
                                         <option value="">---------</option>
                                         @foreach($provinsi as $provinsi)
-                                        <option value="{{$provinsi->provinsi}}" @if(old('provinsi')==$provinsi->provinsi) selected @endif>{{$provinsi->nama_provinsi}}</option>
+                                        <option value="{{$provinsi->code}}" @if(old('provinsi')==$provinsi->code) selected @endif id="{{$provinsi->code}}">{{$provinsi->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('provinsi')
@@ -101,12 +101,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Kota</label>
-                                    <input type="email" class="form-control @error('email')is-invalid @enderror"  id="email" name="email" value="{{old('email')}}">
-                                    @error('email')
-                                    <div id="validationServer03Feedback" class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                    @enderror
+                                    <select name="kabupatenkota" id="kabupatenkota" class="form-control" required="required">
+                                        <option value="">Pilih Kabupaten/Kota</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-2 row">
@@ -147,6 +144,46 @@
             </div>
         </div>
     </section><!-- End Services Section -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var url = $('meta[name="url"]').attr('content');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#provinsi').change(function(){
+                var id = $(this).children(":selected").attr("id");
+                $.ajax({
+                    url: '{{route('root')}}/daerah/kabupatenkota/' + id,
+                    type: 'GET',
+                    success: function(val) {
+                        $('#kabupatenkota').html(val);
+                    }
+                });
+            });
+            $('#kabupatenkota').change(function(){
+                var id = $(this).children(":selected").attr("id");
+                $.ajax({
+                    url: url + '/daerah/kecamatan/' + id,
+                    type: 'GET',
+                    success: function(val) {
+                        $('#kecamatan').html(val);
+                    }
+                });
+            });
+            $('#kecamatan').change(function(){
+                var id = $(this).children(":selected").attr("id");
+                $.ajax({
+                    url: url + '/daerah/kelurahan/' + id,
+                    type: 'GET',
+                    success: function(val) {
+                        $('#kelurahan').html(val);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 @push('scripts')
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>

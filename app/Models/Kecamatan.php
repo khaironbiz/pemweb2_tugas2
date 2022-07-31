@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Provinsi extends Model
+class Kecamatan extends Model
 {
     use HasFactory;
-    protected $table = 'indonesia_provinces';
+    protected $table = 'indonesia_districts';
 }

@@ -71,6 +71,9 @@
 <script src="{{asset('medicio/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
 <script src="{{asset('medicio/assets/vendor/php-email-form/validate.js')}}"></script>
 
+{{--Jquery--}}
+<script src="{{ asset('assets/js/jquery.js')}}"></script>
+
 <!-- Template Main JS File -->
 <script src="{{ asset('medicio/assets/js/main.js')}}"></script>
 @stack('scripts')

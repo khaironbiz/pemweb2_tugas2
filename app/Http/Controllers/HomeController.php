@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Home;
 use App\Models\Provinsi;
 use App\Models\Kota;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Web;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHomeRequest;
@@ -129,16 +131,46 @@ class HomeController extends Controller
         return back()
             ->with('status','Image Upload successful');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function wilayah()
     {
-        //
+
+        $data = [
+            'title'     => 'Media Video',
+            'navbar'    => 'media',
+        ];
+        $wilayah = Indonesia::findProvince(11, ['cities']);
+        var_dump($wilayah);
+//        return view('ajax.wilayah', $data);
     }
+    public function kabupatenkota($provinsi){
+        $kabupatenkota = Kota::Where('province_code', $provinsi)->get();
+        echo "<option value='' id='0/0'>Pilih Kabupaten/Kota</option>";
+        foreach ($kabupatenkota as $data) {
+            echo "<option value='$data->code' id='$data->code'>$data->name</option>";
+        }
+
+    }
+
+    public function kecamatan($kabupatenkota){
+
+        $kecamatan = Kecamatan::Where('city_code', $kabupatenkota)->get();
+
+        echo "<option value='' id='0/0/0'>Pilih Kecamatan</option>";
+        foreach ($kecamatan as $data) {
+            echo "<option value='$data->code' id='$data->lokasi_kecamatan'>$data->name</option>";
+        }
+    }
+
+    public function kelurahan($kecamatan){
+
+        $kelurahan = Kelurahan::Where('district_code', $kecamatan)->get();
+
+        echo "<option value=''>Pilih Kelurahan</option>";
+        foreach ($kelurahan as $data) {
+            echo "<option value='$data->code'>$data->name</option>";
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.

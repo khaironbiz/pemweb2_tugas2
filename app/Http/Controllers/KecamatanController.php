@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kota;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
-class KotaController extends Controller
+class KecamatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class KotaController extends Controller
      */
     public function index()
     {
-        if(isset($_GET['id']) && $_GET['id'] !=''){
-            $code_kota = $_GET['id'];
-            $kota = Kota::firstWhere('code', $code_kota);
-        }
-
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class KotaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kota  $kota
+     * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function show(Kota $kota)
+    public function show(Kecamatan $kecamatan)
     {
         //
     }
@@ -56,10 +52,10 @@ class KotaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kota  $kota
+     * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kota $kota)
+    public function edit(Kecamatan $kecamatan)
     {
         //
     }
@@ -68,10 +64,10 @@ class KotaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kota  $kota
+     * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kota $kota)
+    public function update(Request $request, Kecamatan $kecamatan)
     {
         //
     }
@@ -79,10 +75,10 @@ class KotaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kota  $kota
+     * @param  \App\Models\Kecamatan  $kecamatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kota $kota)
+    public function destroy(Kecamatan $kecamatan)
     {
         //
     }
