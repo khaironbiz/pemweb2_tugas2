@@ -13,7 +13,7 @@
 
             <div class="row">
 
-                <div class="col-md-4 d-flex">
+                <div class="col-md-4 d-flex mb-3">
                     <div class="card">
                         <img src="{{asset('medicio/assets/img/about.jpg')}}">
                         <div class="card-header">
@@ -29,16 +29,59 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 d-flex">
+                <div class="col-md-4 d-flex mb-3">
                     <div class="card">
-                        <img src="{{asset('assets/upload/images/news/thumbs/laser.jpg')}}">
+                        <img src="{{asset('assets/upload/images/demo/1.jpg')}}">
                         <div class="card-header">
                             <b>Laser Hijau</b>
                         </div>
                         <div class="card-body">
                             Lorem
                         </div>
-
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex mb-3">
+                    <div class="card">
+                        <img src="{{asset('assets/upload/images/demo/2.jpg')}}">
+                        <div class="card-header">
+                            <b>Laser Hijau</b>
+                        </div>
+                        <div class="card-body">
+                            Lorem
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex mb-3">
+                    <div class="card">
+                        <img src="{{asset('assets/upload/images/demo/3.jpg')}}">
+                        <div class="card-header">
+                            <b>Laser Hijau</b>
+                        </div>
+                        <div class="card-body">
+                            Lorem
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex mb-3">
+                    <div class="card">
+                        <img src="{{asset('assets/upload/images/demo/4.jpg')}}">
+                        <div class="card-header">
+                            <b>Laser Hijau</b>
+                        </div>
+                        <div class="card-body">
+                            Lorem
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex mb-3">
+                    <div class="card">
+                        <img src="{{asset('assets/upload/images/demo/5.jpg')}}">
+                        <div class="card-header">
+                            <b>Laser Hijau</b>
+                        </div>
+                        <div class="card-body">
+                            Lorem
+                        </div>
                     </div>
                 </div>
             </div>

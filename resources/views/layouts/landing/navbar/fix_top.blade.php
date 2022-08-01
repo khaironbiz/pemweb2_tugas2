@@ -9,14 +9,14 @@
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link @if($navbar=='home'): active @endif " href="/">Home</a></li>
-                <li><a class="nav-link @if($navbar=='about'): active @endif" href="/home/about">About</a></li>
-                <li><a class="nav-link @if($navbar=='services'): active @endif" href="/home/services">Services</a></li>
-                <li><a class="nav-link @if($navbar=='events'): active @endif" href="/home/events">Events</a></li>
+                <li><a class="nav-link @if($navbar=='about'): active @endif" href="{{route('home.about')}}">About</a></li>
+                <li><a class="nav-link @if($navbar=='services'): active @endif" href="{{route('home.services')}}">Services</a></li>
+                <li><a class="nav-link @if($navbar=='events'): active @endif" href="{{route('home.events')}}">Events</a></li>
                 <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-                <li class="dropdown @if($navbar=='media'): active @endif"><a href="#"><span>Media</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#" class="@if($navbar=='media'): active @endif"><span>Media</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="/home/foto">Foto</a></li>
-                        <li><a href="/home/video">Video</a></li>
+                        <li><a href="{{route('home.foto')}}" class=" @if($title=='Media Foto'): active @endif">Foto</a></li>
+                        <li><a href="{{route('home.video')}}" class=" @if($title=='Media Video'): active @endif">Video</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -36,7 +36,7 @@
                         <li><a href="#">Drop Down 4</a></li>
                     </ul>
                 </li>
-                <li><a class="nav-link @if($navbar=='contact'): active @endif" href="/home/contact">Contact</a></li>
+                <li><a class="nav-link @if($navbar=='contact'): active @endif" href="{{route('home.contact')}}">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

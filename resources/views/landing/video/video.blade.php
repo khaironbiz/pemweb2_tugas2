@@ -3,11 +3,11 @@
 
 @section('content')
     <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors section-bg mt-5">
+    <section id="video" class="doctors section-bg mt-5">
         <div class="container mt-5" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>Doctors</h2>
+                <h2>Video</h2>
                 <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
             <div class="row">

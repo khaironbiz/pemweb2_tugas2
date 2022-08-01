@@ -20,15 +20,15 @@ use App\Http\Controllers\OrganisasiProfesiController;
 
 //landing
 Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('root');
-Route::get('/home',[App\Http\Controllers\HomeController::class,'index']);
-Route::get('/web',[App\Http\Controllers\HomeController::class,'web'])->name('web');
-Route::post('/settings',[App\Http\Controllers\HomeController::class,'settings'])->name('settings');
-Route::get('/home/about',[App\Http\Controllers\HomeController::class,'about'])->name('home.about');
-Route::get('/home/services',[App\Http\Controllers\HomeController::class,'services'])->name('home.services');
-Route::get('/home/events',[App\Http\Controllers\HomeController::class,'events'])->name('home.events');
-Route::get('/home/foto',[App\Http\Controllers\HomeController::class,'foto'])->name('home.foto');
-Route::get('/home/video',[App\Http\Controllers\HomeController::class,'video'])->name('home.video');
-Route::get('/home/contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
+Route::get('home',[App\Http\Controllers\HomeController::class,'index']);
+Route::get('web',[App\Http\Controllers\HomeController::class,'web'])->name('web');
+Route::post('settings',[App\Http\Controllers\HomeController::class,'settings'])->name('settings');
+Route::get('about',[App\Http\Controllers\HomeController::class,'about'])->name('home.about');
+Route::get('services',[App\Http\Controllers\HomeController::class,'services'])->name('home.services');
+Route::get('events',[App\Http\Controllers\HomeController::class,'events'])->name('home.events');
+Route::get('foto',[App\Http\Controllers\HomeController::class,'foto'])->name('home.foto');
+Route::get('video',[App\Http\Controllers\HomeController::class,'video'])->name('home.video');
+Route::get('contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
 
 //wilayah indonesia
 Route::get('/wilayah',[App\Http\Controllers\HomeController::class,'wilayah'])->name('home.wilayah');
