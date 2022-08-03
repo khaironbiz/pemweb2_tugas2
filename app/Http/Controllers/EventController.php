@@ -15,7 +15,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title'     => 'Events',
+            'navbar'    => 'events',
+        ];
+        return view('landing.events.events', $data);
+    }
+    public function detail($slug)
+    {
+        $data = [
+            'title'     => 'Events',
+            'navbar'    => 'events',
+        ];
+        return view('landing.events.detail', $data);
     }
 
     /**

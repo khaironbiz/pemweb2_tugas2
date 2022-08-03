@@ -25,7 +25,8 @@ Route::get('web',[App\Http\Controllers\HomeController::class,'web'])->name('web'
 Route::post('settings',[App\Http\Controllers\HomeController::class,'settings'])->name('settings');
 Route::get('about',[App\Http\Controllers\HomeController::class,'about'])->name('home.about');
 Route::get('services',[App\Http\Controllers\HomeController::class,'services'])->name('home.services');
-Route::get('events',[App\Http\Controllers\HomeController::class,'events'])->name('home.events');
+Route::get('events',[App\Http\Controllers\EventController::class,'index'])->name('home.events');
+Route::get('events/{slug}',[App\Http\Controllers\EventController::class,'detail'])->name('home.events.detail');
 Route::get('foto',[App\Http\Controllers\HomeController::class,'foto'])->name('home.foto');
 Route::get('video',[App\Http\Controllers\HomeController::class,'video'])->name('home.video');
 Route::get('contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
