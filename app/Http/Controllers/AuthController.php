@@ -31,22 +31,18 @@ class AuthController extends Controller
             'password'  => ['required', 'min:6'],
         ]);
         if(Auth::attempt($credentials)){
-            return redirect()->route('profile')->with(['success' => 'Selamat anda berhasil login']);
+            if(Auth::user()->id == 1){
+                return redirect()->route('root')->with(['success' => 'Selamat anda berhasil login']);
+            }else{
+                return redirect()->route('profile')->with(['success' => 'Selamat anda berhasil login']);
+            }
+
         }else{
             return redirect()->route('login')->with('status', 'Login failed!! please check again')->withInput();
         }
 
     }
-    public function profile(){
-        $username = Auth::user()->username;
-        $data = [
-            'title'     => "Profile Karyawan",
-            'class'     => 'User',
-            'sub_class' => 'Show',
-            'user'      => User::firstWhere('username', $username),
-        ];
-        return view('admin.user.profile', $data);
-    }
+
     public function registration(){
 
     $data = [
@@ -95,6 +91,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with(['success' => 'Silahkan login kembali']);
+        return redirect()->route('root')->with(['success' => 'Silahkan login kembali']);
     }
 }

@@ -24,7 +24,7 @@ class EventController extends Controller
     public function detail($slug)
     {
         $data = [
-            'title'     => 'Events',
+            'title'     => 'Event',
             'navbar'    => 'events',
         ];
         return view('landing.events.detail', $data);

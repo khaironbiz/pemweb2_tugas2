@@ -99,6 +99,15 @@ class HomeController extends Controller
         ];
         return view('landing.events.events', $data);
     }
+    public function admin()
+    {
+
+        $data = [
+            'title'     => 'Admin Area',
+            'navbar'    => 'admin',
+        ];
+        return view('landing.admin.index', $data);
+    }
     public function settings(Request $request)
     {
 

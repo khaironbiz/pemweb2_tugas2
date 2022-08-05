@@ -6,47 +6,55 @@
     <section id="events" class="services services mt-5">
         <div class="container mt-5" data-aos="fade-up">
             <div class="section-title">
-                <h2>Events</h2>
+                <h2>{{$title}}</h2>
                 <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
             <div class="row">
-                <div class="col-md-4  d-flex card">
-                    <div class="card p-2 mt-2">
-                        <div class="card-header">
-                            Kelas
+                <div class="col-md-4  d-flex">
+                    <div class="card p-2">
+                        <div class="card">
+                            <img src="{{asset('assets/upload/images/demo/5.jpg')}}" class="w-100">
+                            <div class="card-header">
+                                Kelas
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <a href="{{route('home.events.detail',['slug'=>'slug-baru-banget'])}}">
+                                    <li class="list-group-item active">Detail</li>
+                                </a>
+                                <li class="list-group-item">Materi</li>
+                                <li class="list-group-item">Pendaftaran</li>
+                            </ul>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <a href="{{route('home.events.detail',['slug'=>'slug-baru-banget'])}}">
-                                <li class="list-group-item active">An item</li>
-                            </a>
-
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
                     </div>
-                    <div class="card p-2 mt-2">
-                        <div class="card-header">
-                            Kelas
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <a href="{{route('home.events.detail',['slug'=>'slug-baru-banget'])}}">
-                                <li class="list-group-item active">An item</li>
-                            </a>
-
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                    </div>
-
                 </div>
-                <div class="col-md-8 d-flex card">
-                    <div class="card">
-                        <img src="{{asset('assets/upload/images/demo/5.jpg')}}" class="w-100">
-                        <div class="card-header">
-                            <b>Judul Event</b>
-                        </div>
+                <div class="col-md-8 d-flex">
+                    <div class="card p-2">
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <b>Judul Event</b>
+                            </div>
+                            <div class="card-body">
+                                <h6>Deskripsi</h6>
+                                <p>
+                                    Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                                </p>
 
+                                <h6 class="mt-3">Tanggal</h6>
+                                <h6 class="mt-3">Tempat</h6>
+                                <h6 class="mt-3">Akreditasi</h6>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>PPNI</label>
+                                    </div>
+                                    <div class="col-4">: 3 SKP
+                                    </div>
+                                </div>
+                                <h6 class="mt-3">Fasilitas</h6>
+                            </div>
+
+                        </div>
                     </div>
+
 
                 </div>
 

@@ -21,6 +21,7 @@ use App\Http\Controllers\OrganisasiProfesiController;
 //landing
 Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('root');
 Route::get('home',[App\Http\Controllers\HomeController::class,'index']);
+Route::get('admin',[App\Http\Controllers\HomeController::class,'admin'])->name('admin')->middleware('auth');
 Route::get('web',[App\Http\Controllers\HomeController::class,'web'])->name('web');
 Route::post('settings',[App\Http\Controllers\HomeController::class,'settings'])->name('settings');
 Route::get('about',[App\Http\Controllers\HomeController::class,'about'])->name('home.about');
@@ -47,12 +48,15 @@ Route::get('villages', 'DependentDropdownController@villages')->name('villages')
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login')->middleware('guest');
 Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
-Route::get('/profile',[App\Http\Controllers\AuthController::class,'profile'])->name('profile')->middleware('auth');
+Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile')->middleware('auth');
 Route::get('/registration',[App\Http\Controllers\AuthController::class,'registration'])->name('registration');
 Route::post('/register',[App\Http\Controllers\AuthController::class,'register'])->name('register');
 Route::post('/logout',[App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 
-//user
+//user umum
+
+
+//user admin
 Route::get('/admin/user',[UserController::class,'index'])->name('user')->middleware('auth');
 Route::post('/admin/user/store',[UserController::class,'store']);
 Route::get('/admin/user/show/{id}',[UserController::class,'show'])->name('user.show')->middleware('auth');

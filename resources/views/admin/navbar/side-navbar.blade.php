@@ -14,7 +14,7 @@
 {{--            <img src="/assets/upload/images/user/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="User Image">--}}
         </div>
         <div class="info">
-{{--          <a href="#" class="d-block">{{ Auth::user()->name }}</a>--}}
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
       <!-- Sidebar Menu -->

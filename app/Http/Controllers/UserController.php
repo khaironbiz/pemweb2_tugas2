@@ -6,6 +6,7 @@ use App\Models\Example;
 use App\Models\Profesi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,6 +25,17 @@ class UserController extends Controller
             'user'      => User::all()
         ];
         return view('admin.user.index', $data);
+    }
+    public function profile(){
+        $username = Auth::user()->username;
+        $data = [
+            'title'     => "Profile Karyawan",
+            'class'     => 'User',
+            'sub_class' => 'Show',
+            'navbar'    => 'user',
+            'user'      => User::firstWhere('username', $username),
+        ];
+        return view('landing.user.profile', $data);
     }
     public function store(Request $request){
         //
