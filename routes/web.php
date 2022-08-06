@@ -48,13 +48,14 @@ Route::get('villages', 'DependentDropdownController@villages')->name('villages')
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login')->middleware('guest');
 Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
-Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile')->middleware('auth');
 Route::get('/registration',[App\Http\Controllers\AuthController::class,'registration'])->name('registration');
 Route::post('/register',[App\Http\Controllers\AuthController::class,'register'])->name('register');
 Route::post('/logout',[App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 
 //user umum
-
+Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile')->middleware('auth');
+Route::get('/profile/edit',[App\Http\Controllers\UserController::class,'profileedit'])->name('profile.edit')->middleware('auth');
+Route::post('/profile/update/{id}',[App\Http\Controllers\UserController::class,'profileupdate'])->name('profile.update')->middleware('auth');
 
 //user admin
 Route::get('/admin/user',[UserController::class,'index'])->name('user')->middleware('auth');
@@ -96,4 +97,7 @@ Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generat
 
 //website
 Route::get('/admin/website',[WebController::class,'admin'])->name('web_admin')->middleware('auth');
+
+//Education
+Route::get('/education/type',[\App\Http\Controllers\EducationTypeController::class,'index'])->name('education_type')->middleware('auth');
 

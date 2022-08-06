@@ -47,6 +47,7 @@
     @yield ('content')
     <!-- /.content-wrapper -->
     @include ('admin.footer.main-footer')
+    @include('sweetalert::alert')
     <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

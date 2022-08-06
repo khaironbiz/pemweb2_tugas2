@@ -1,4 +1,4 @@
-<div class="card p-2">
+<div class="card p-2 w-100">
     <div class="card">
         <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-100 text-center"><br>
         <div class="card-header">

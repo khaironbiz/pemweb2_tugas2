@@ -18,7 +18,10 @@
                     <div class="card p-2 w-100">
                         <div class="card mb-2">
                             <div class="card-header">
-                                <b>Data Diri</b>
+                                <div class="row">
+                                    <div class="col-6"><b>Data Diri</b></div>
+                                    <div class="col-6 text-end"><a href="{{route('profile.edit')}}" class="btn btn-sm btn-success">Edit</a></div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="row mb-2">
@@ -32,6 +35,12 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-md-9 col-8">:{{$user->email}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-3 col-4">
+                                        <label>Username</label>
+                                    </div>
+                                    <div class="col-md-9 col-8">:{{$user->username}}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-4">
