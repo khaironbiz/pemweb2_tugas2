@@ -51,7 +51,7 @@
                         </ul>
                     </li>
                 @else
-                    <li><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                    <li><a class="nav-link @if($navbar=='login'): active @endif" href="{{route('login')}}">Login</a></li>
                 @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

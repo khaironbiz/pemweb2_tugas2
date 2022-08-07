@@ -19,9 +19,23 @@ class AuthController extends Controller
 
 
         $data = [
-            'title'     => 'Login',
+            'title'     => "Login",
+            'class'     => 'Auth',
+            'sub_class' => 'login',
+            'navbar'    => 'login',
         ];
         return view('auth.login', $data);
+//        return view('landing.auth.login', $data);
+    }
+    public function forgot()
+    {
+        $data = [
+            'title'     => "Forgot Password",
+            'class'     => 'Auth',
+            'sub_class' => 'forgot',
+            'navbar'    => 'login',
+        ];
+        return view('landing.auth.forgot', $data);
     }
 
     public function login(Request $request)
@@ -30,6 +44,11 @@ class AuthController extends Controller
             'email'     => ['required', 'email:dns'],
             'password'  => ['required', 'min:6'],
         ]);
+        if ($credentials->fails()) {
+            return redirect()->back()
+                ->with('errorForm', $credentials->errors()->getMessages())
+                ->withInput();
+        }
         if(Auth::attempt($credentials)){
             if(Auth::user()->id == 1){
                 return redirect()->route('root')->with(['success' => 'Selamat anda berhasil login']);
@@ -45,14 +64,16 @@ class AuthController extends Controller
 
     public function registration(){
 
-    $data = [
-        'title'     => "Profile Karyawan",
-        'class'     => 'User',
-        'sub_class' => 'Show',
+        $data = [
+            'title'     => "Registrasi Anggota",
+            'class'     => 'User',
+            'sub_class' => 'registration',
+            'navbar'    => 'login',
 
-    ];
-    return view('auth.registration', $data);
-}
+        ];
+        return view('auth.registration', $data);
+//        return view('landing.auth.registration', $data);
+    }
     public function register(Request $request){
         //
         $validated = $request->validate([

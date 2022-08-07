@@ -41,11 +41,15 @@ class UserController extends Controller
     public function store(Request $request){
         //
         $validated = $request->validate([
-            'name'      => 'required',
-            'username'  => 'required|alpha_num',
-            'email'     => 'required|email:rfc,dns',
-            'password'  => 'required',
-            'file'      => 'required',
+            'gelar_depan'       => 'required',
+            'gelar_belakang'    => 'required',
+            'nama_depan'        => 'required',
+            'nama_belakang'     => 'required',
+            'username'          => 'required|alpha_num',
+            'phone_cell'        => 'required|number',
+            'email'             => 'required|email:rfc,dns',
+            'password'          => 'required',
+            'file'              => 'required',
         ]);
 
         // menyimpan data file yang diupload ke variabel $file
@@ -67,6 +71,7 @@ class UserController extends Controller
         $user->save();
 
         if($user){
+
             return redirect()->route('user')->with(['success'=>'data anda tersimpan']);
         }else{
             return redirect()->route('example.data')->with(['error'=>'data gagal tersimpan']);

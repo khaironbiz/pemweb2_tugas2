@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Core\Number;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -19,5 +20,6 @@ class UserSeeder extends Seeder
             ->count(50)
             ->hasPosts(1)
             ->create();
+
     }
 }

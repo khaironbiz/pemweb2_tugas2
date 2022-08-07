@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Education_type;
 use App\Http\Requests\StoreEducation_typeRequest;
 use App\Http\Requests\UpdateEducation_typeRequest;
+use App\Models\User;
 
 class EducationTypeController extends Controller
 {
@@ -16,6 +17,14 @@ class EducationTypeController extends Controller
     public function index()
     {
         //
+        $data = [
+            'title'     => "Education Type",
+            'class'     => 'Education',
+            'sub_class' => 'type',
+            'navbar'    => 'education',
+            'user'      => Education_type::all(),
+        ];
+        return view('landing.education.type', $data);
     }
 
     /**

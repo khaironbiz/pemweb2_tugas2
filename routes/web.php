@@ -47,9 +47,10 @@ Route::get('villages', 'DependentDropdownController@villages')->name('villages')
 
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login')->middleware('guest');
-Route::post('/auth',[App\Http\Controllers\AuthController::class,'login']);
-Route::get('/registration',[App\Http\Controllers\AuthController::class,'registration'])->name('registration');
+Route::post('/auth',[App\Http\Controllers\AuthController::class,'login'])->name('auth');
+Route::get('/registration',[App\Http\Controllers\AuthController::class,'registration'])->name('registration')->middleware('guest');
 Route::post('/register',[App\Http\Controllers\AuthController::class,'register'])->name('register');
+Route::get('/forgot',[App\Http\Controllers\AuthController::class,'forgot'])->name('forgot')->middleware('guest');
 Route::post('/logout',[App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 
 //user umum
