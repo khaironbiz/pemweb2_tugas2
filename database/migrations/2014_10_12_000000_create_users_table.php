@@ -20,10 +20,13 @@ return new class extends Migration
             $table->string('nama_depan',50);
             $table->string('nama_belakang',100);
             $table->string('nama_lengkap',200);
+            $table->date('tgl_lahir');
+            $table->string('jk', 25);
+            $table->bigInteger('nik')->nullable();
+            $table->bigInteger('nira')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('phone_cell', 25)->unique();
-            $table->foreignId('education_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();;
             $table->string('foto')->nullable();;

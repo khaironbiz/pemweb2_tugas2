@@ -105,6 +105,8 @@ class HomeController extends Controller
         $data = [
             'title'     => 'Admin Area',
             'navbar'    => 'admin',
+            'class'     => 'Admin',
+            'sub_class' => 'admin'
         ];
         return view('landing.admin.index', $data);
     }

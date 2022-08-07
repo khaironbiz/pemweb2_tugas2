@@ -5,9 +5,12 @@
             <b>{{$user->name}}</b>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item active">Profile</li>
+            <a href="{{route('forgot')}}">
+                <li class="list-group-item @if($sub_class=='profile') active @endif ">Profile</li>
+            </a>
             <li class="list-group-item">Pelatihan HIPENI</li>
             <li class="list-group-item">PKB</li>
+            <li class="list-group-item">Admin Area</li>
         </ul>
     </div>
 </div>

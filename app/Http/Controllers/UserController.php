@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Example;
 use App\Models\Profesi;
+use App\Http\Requests\user\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,25 +33,15 @@ class UserController extends Controller
         $data = [
             'title'     => "Profile Karyawan",
             'class'     => 'User',
-            'sub_class' => 'Show',
-            'navbar'    => 'user',
+            'sub_class' => 'profile',
+            'navbar'    => 'profile',
             'user'      => User::firstWhere('username', $username),
         ];
         return view('landing.user.profile', $data);
     }
-    public function store(Request $request){
+    public function store(Store $request){
         //
-        $validated = $request->validate([
-            'gelar_depan'       => 'required',
-            'gelar_belakang'    => 'required',
-            'nama_depan'        => 'required',
-            'nama_belakang'     => 'required',
-            'username'          => 'required|alpha_num',
-            'phone_cell'        => 'required|number',
-            'email'             => 'required|email:rfc,dns',
-            'password'          => 'required',
-            'file'              => 'required',
-        ]);
+
 
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('file');
@@ -61,7 +52,13 @@ class UserController extends Controller
         $file->move($tujuan_upload,$nama_file_baru);
 
         $user = new User();
-        $user->name = $request->name;
+        $user->gelar_depan = $request->gelar_depan;
+        $user->gelar_belakang = $request->gelar_belakang;
+        $user->nama_depan = $request->nama_depan;
+        $user->nama_belakang = $request->nama_belakang;
+        $user->nama_lengkap = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
+        $user->tgl_lahir="1984-09-06";
+        $user->jk=1;
         $user->username = Str::slug($request->username, '-');
         $user->email = $request->email;
         $user->phone_cell = $request->phone_cell;
@@ -102,17 +99,18 @@ class UserController extends Controller
         $data = [
             'title'     => "Profile Karyawan",
             'class'     => 'User',
-            'sub_class' => 'Show',
+            'sub_class' => 'profile',
             'navbar'    => 'user',
             'user'      => User::firstWhere('username', $username),
         ];
         return view('landing.user.edit', $data);
     }
-    public function profileupdate(Request $request, $id){
+    public function profileupdate(Store $request, $id){
         $validator = Validator::make($request->all(), [
-            'nama'      => 'required',
-            'username'  => 'required|alpha_num',
-            'email'     => 'required|email:rfc,dns',
+            'nama_depan'    => 'required',
+            'nama_belakang' => 'required',
+            'nik'           => 'required|numeric',
+            'email'         => 'required|email:rfc,dns',
         ]);
         if ($validator->fails()) {
             return redirect()->back()
@@ -121,18 +119,28 @@ class UserController extends Controller
         }else{
             // menyimpan data file yang diupload ke variabel $file
             $file = $request->file('file');
-            $data = User::find($id);
+            $user = User::find($id);
             //ambil data dari form
-            $data->name     = $request->nama;
-            $data->username = Str::slug($request->username, '-');
-            $data->email    = $request->email;
+            $user->nama_depan       = $request->nama_depan;
+            $user->nama_belakang    = $request->nama_belakang;
+            $user->gelar_depan      = $request->gelar_depan;
+            $user->gelar_belakang   = $request->gelar_belakang;
+            $user->nama_lengkap     = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
+            $user->username         = uniqid();
+            $user->tgl_lahir        = $request->tgl_lahir;
+            $user->jk               = $request->jk;
+            $user->nik              = $request->nik;
+            $user->nira             = $request->nira;
+            $user->email            = $request->email;
+            $user->phone_cell       = $request->phone_cell;
+
             //jika ada gambar yang diupload
             if($file !=''){
                 // isi dengan nama folder tempat kemana file diupload
                 $tujuan_upload  = 'assets/upload/images/user/';
                 $resize         = 'assets/upload/images/user/resize/';
-                $file_resize    = $resize.$data->foto;
-                $file_lama     = $tujuan_upload.$data->foto;
+                $file_resize    = $resize.$user->foto;
+                $file_lama     = $tujuan_upload.$user->foto;
 //                unlink($file_lama);
 //                unlink($file_resize);
                 //resize image
@@ -147,13 +155,13 @@ class UserController extends Controller
                 // upload file
                 $nama_file_baru = uniqid().$file->getClientOriginalName();
                 $file->move($tujuan_upload,$nama_file_baru);
-                $data->foto = $nama_file_baru;
-                $data->save();
+                $user->foto = $nama_file_baru;
+                $user->save();
             }else{
                 //jika tidak ada gambar
-                $data->save();
+                $user->save();
             }
-            if ($data) {
+            if ($user) {
                 return redirect()->route('profile')->with(['success' => 'Data berhasil diupdate']);
             } else {
                 return redirect()->route('profile.edit')->with(['error' => 'data gagal tersimpan']);

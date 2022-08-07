@@ -36,7 +36,7 @@
                     </ul>
                 </li>
                 <li><a class="nav-link @if($navbar=='contact'): active @endif" href="{{route('home.contact')}}">Contact</a></li>
-                @if(isset(Auth::user()->name))
+                @if(isset(Auth::user()->username))
                     <li class="dropdown"><a href="#" class="@if($navbar=='user'): active @endif"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{route('profile')}}" class=" @if($title=='Profile Karyawan'): active @endif">Profile</a></li>

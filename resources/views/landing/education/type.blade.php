@@ -19,7 +19,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6">
-                                    <h6>{{$class}}</h6>
+                                    <b>Pendidikan</b>
                                 </div>
                                 <div class="col-6 text-end">
                                     <!-- Button trigger modal -->
@@ -28,7 +28,27 @@
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                <th>#</th>
+                                <th>Sifat</th>
+                                <th>Tipe</th>
+                                <th>Count</th>
+                                <th>Action</th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -99,6 +99,7 @@ Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generat
 //website
 Route::get('/admin/website',[WebController::class,'admin'])->name('web_admin')->middleware('auth');
 
+
 //Education
 Route::get('/education/type',[\App\Http\Controllers\EducationTypeController::class,'index'])->name('education_type')->middleware('auth');
 

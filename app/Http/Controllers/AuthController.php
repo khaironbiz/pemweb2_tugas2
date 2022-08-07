@@ -24,8 +24,8 @@ class AuthController extends Controller
             'sub_class' => 'login',
             'navbar'    => 'login',
         ];
-        return view('auth.login', $data);
-//        return view('landing.auth.login', $data);
+//        return view('auth.login', $data);
+        return view('landing.auth.login', $data);
     }
     public function forgot()
     {
@@ -44,11 +44,7 @@ class AuthController extends Controller
             'email'     => ['required', 'email:dns'],
             'password'  => ['required', 'min:6'],
         ]);
-        if ($credentials->fails()) {
-            return redirect()->back()
-                ->with('errorForm', $credentials->errors()->getMessages())
-                ->withInput();
-        }
+
         if(Auth::attempt($credentials)){
             if(Auth::user()->id == 1){
                 return redirect()->route('root')->with(['success' => 'Selamat anda berhasil login']);
@@ -57,7 +53,7 @@ class AuthController extends Controller
             }
 
         }else{
-            return redirect()->route('login')->with('status', 'Login failed!! please check again')->withInput();
+            return redirect()->route('login')->with('error', 'Login failed!! please check again')->withInput();
         }
 
     }
@@ -71,31 +67,50 @@ class AuthController extends Controller
             'navbar'    => 'login',
 
         ];
-        return view('auth.registration', $data);
-//        return view('landing.auth.registration', $data);
+//        return view('auth.registration', $data);
+        return view('landing.auth.registration', $data);
     }
     public function register(Request $request){
         //
-        $validated = $request->validate([
-            'name'          => 'required',
-            'username'      => 'required|alpha_num|unique:users,username',
+        $validator = Validator::make($request->all(), [
+            'nama_depan'    => 'required',
+            'nama_belakang' => 'required',
             'email'         => 'required|email:rfc,dns|unique:users,email',
             'phone_cell'    => 'required|unique:users,phone_cell',
-            'password'      => ['required', 'confirmed', Password::min(8)],
         ]);
-        $user = new User();
-        $user->name = $request->name;
-        $user->username = Str::slug($request->username, '-');
-        $user->email = $request->email;
-        $user->phone_cell = $request->phone_cell;
-        $user->password = hash::make($request->password);
-        $user->save();
-
-        if($user){
-            return redirect()->route('login')->with(['success'=>'Data pendaftaran anda tersimpan']);
-        }else{
-            return redirect()->route('registration')->with(['error'=>'data gagal tersimpan']);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->with('errorForm', $validator->errors()->getMessages())
+                ->withInput();
         }
+        try{
+            $user = new User();
+            $user->nama_depan       = $request->nama_depan;
+            $user->nama_belakang    = $request->nama_belakang;
+            $user->gelar_depan      = $request->gelar_depan;
+            $user->gelar_belakang   = $request->gelar_belakang;
+            $user->nama_lengkap     = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang." ".$request->gelar_belakang;
+            $user->username         = uniqid();
+            $user->tgl_lahir        = $request->tgl_lahir;
+            $user->jk               = $request->jk;
+            $user->email            = $request->email;
+            $user->phone_cell       = $request->phone_cell;
+            $user->password         = hash::make('password');
+            $user->save();
+            return redirect()->back()
+                ->with('success', 'Created successfully!');
+
+        }catch (\Exception $e){
+            return redirect()->back()
+                ->with('error', 'Error during the creation!')->withInput();
+        }
+
+
+//        if($user){
+//            return redirect()->route('login')->with(['success'=>'Data pendaftaran anda tersimpan']);
+//        }else{
+//            return redirect()->route('registration')->with(['error'=>'data gagal tersimpan']);
+//        }
     }
 
 

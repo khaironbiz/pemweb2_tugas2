@@ -67,7 +67,7 @@
                                 @foreach($user as $exp)
                                 <tr>
                                     <td>{{$x++}}</td>
-                                    <td>{{  $exp->name }}
+                                    <td>{{  $exp->nama_lengkap }}
                                     </td>
                                     <td>{{$exp->email}} </td>
                                     <td>
@@ -90,9 +90,27 @@
                                                 @csrf
                                             <div class="modal-body">
                                                 <div class="row mb-1">
-                                                    <label class="col-sm-2 col-form-label">Name</label>
+                                                    <label class="col-sm-2 col-form-label">Gelar Depan</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text"class="form-control" name="name">
+                                                        <input type="text"class="form-control" name="gelar_depan">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <label class="col-sm-2 col-form-label">Gelar Belakang</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text"class="form-control" name="gelar_belakang">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <label class="col-sm-2 col-form-label">Nama Depan</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text"class="form-control" name="nama_depan">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-1">
+                                                    <label class="col-sm-2 col-form-label">Nama Belakang</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text"class="form-control" name="nama_belakang">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-1">

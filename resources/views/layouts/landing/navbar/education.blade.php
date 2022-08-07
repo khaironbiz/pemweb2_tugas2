@@ -2,7 +2,7 @@
     <div class="card">
 
         <div class="card-header">
-            <b>{{$class}}</b>
+            <a href="{{route('admin')}}"><b>Admin Area</b></a>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item active">Type</li>

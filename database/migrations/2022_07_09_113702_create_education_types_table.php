@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('education_types', function (Blueprint $table) {
             $table->id();
+            $table->integer('sifat');
             $table->string('education_type',255);
             $table->timestamps();
         });
