@@ -105,7 +105,7 @@ class UserController extends Controller
         ];
         return view('landing.user.edit', $data);
     }
-    public function profileupdate(Store $request, $id){
+    public function profileupdate(Request $request, $id){
         $validator = Validator::make($request->all(), [
             'nama_depan'    => 'required',
             'nama_belakang' => 'required',
