@@ -101,5 +101,9 @@ Route::get('/admin/website',[WebController::class,'admin'])->name('web_admin')->
 
 
 //Education
-Route::get('/education/type',[\App\Http\Controllers\EducationTypeController::class,'index'])->name('education_type')->middleware('auth');
+//type
+Route::get('/education/type',[\App\Http\Controllers\EducationTypeController::class,'index'])->name('education.type')->middleware('auth');
+Route::post('/education/type/store',[\App\Http\Controllers\EducationTypeController::class,'store'])->name('education.type.store')->middleware('auth');
 
+//level
+Route::get('/education/level',[\App\Http\Controllers\EducationLevelController::class,'index'])->name('education.level')->middleware('auth');

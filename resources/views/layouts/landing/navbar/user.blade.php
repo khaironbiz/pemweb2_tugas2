@@ -10,7 +10,9 @@
             </a>
             <li class="list-group-item">Pelatihan HIPENI</li>
             <li class="list-group-item">PKB</li>
-            <li class="list-group-item">Admin Area</li>
+            <a href="{{route('admin')}}">
+                <li class="list-group-item">Admin Area</li>
+            </a>
         </ul>
     </div>
 </div>

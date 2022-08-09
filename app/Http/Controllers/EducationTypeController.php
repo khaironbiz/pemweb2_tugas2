@@ -6,6 +6,7 @@ use App\Models\Education_type;
 use App\Http\Requests\StoreEducation_typeRequest;
 use App\Http\Requests\UpdateEducation_typeRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class EducationTypeController extends Controller
 {
@@ -22,7 +23,7 @@ class EducationTypeController extends Controller
             'class'     => 'Education',
             'sub_class' => 'type',
             'navbar'    => 'education',
-            'user'      => Education_type::all(),
+            'education_type'=> Education_type::all(),
         ];
         return view('landing.education.type', $data);
     }
@@ -43,9 +44,20 @@ class EducationTypeController extends Controller
      * @param  \App\Http\Requests\StoreEducation_typeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEducation_typeRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = [
+            'sifat'             => 'required|numeric',
+            'education_type'    => 'required|unique.education_type, education_type',
+        ];
+        $education_type = new Education_type();
+        $education_type->sifat=$request->sifat;
+        $education_type->education_type=$request->education_type;
+        $education_type->slug=md5(uniqid());
+        $education_type->save();
+        if($education_type){
+            return redirect()->route('education.type')->with(['success' => 'Data berhasil tambah']);
+        }
     }
 
     /**
@@ -57,6 +69,8 @@ class EducationTypeController extends Controller
     public function show(Education_type $education_type)
     {
         //
+
+
     }
 
     /**

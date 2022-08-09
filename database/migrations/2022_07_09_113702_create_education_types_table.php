@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('sifat');
             $table->string('education_type',255);
+            $table->string('slug',100);
             $table->timestamps();
         });
     }

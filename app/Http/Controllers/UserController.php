@@ -40,8 +40,6 @@ class UserController extends Controller
         return view('landing.user.profile', $data);
     }
     public function store(Store $request){
-        //
-
 
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('file');

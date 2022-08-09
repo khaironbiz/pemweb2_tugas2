@@ -39,14 +39,23 @@
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
 
+                                @foreach($education_type as $e)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>
+                                        @if($e->sifat ==1)Formal
+                                        @else
+                                        Informal
+                                        @endif
+                                    </td>
+                                    <td>{{$e->education_type}}</td>
+                                    <td></td>
+                                    <td>
+                                        <a href="" class="btn btn-sm btn-primary">Detail</a>
+                                    </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -65,14 +74,15 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Type Pendidikan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <form action="{{route('education.type.store')}}" method="post">
+                    @csrf
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-4">
                             <label>Sifat Pendidikan</label>
                         </div>
                         <div class="col-md-8">
-                            <select class="form-control form-control-sm">
+                            <select class="form-control form-control-sm" name="sifat">
                                 <option value="">----pilih----</option>
                                 <option value="1">Pendidikan Formal</option>
                                 <option value="2">Pendidikan Informal</option>
@@ -84,7 +94,7 @@
                             <label>Type Pendidikan</label>
                         </div>
                         <div class="col-md-8">
-                            <input class="form-control form-control-sm" type="text">
+                            <input class="form-control form-control-sm" type="text" name="education_type">
                         </div>
                     </div>
                 </div>

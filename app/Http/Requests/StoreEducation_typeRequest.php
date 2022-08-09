@@ -25,6 +25,8 @@ class StoreEducation_typeRequest extends FormRequest
     {
         return [
             //
+            'sifat'             => 'required|numeric',
+            'education_type'    => 'required|unique.education_type, education_type',
         ];
     }
 }
