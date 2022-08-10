@@ -25,7 +25,7 @@ class EducationTypeController extends Controller
             'navbar'    => 'education',
             'education_type'=> Education_type::all(),
         ];
-        return view('landing.education.type', $data);
+        return view('landing.education.type.type', $data);
     }
 
     /**

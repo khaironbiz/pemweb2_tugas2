@@ -6,10 +6,10 @@
         </div>
         <ul class="list-group list-group-flush">
             <a href="{{route('education.type')}}">
-                <li class="list-group-item active">Type</li>
+                <li class="list-group-item @if($sub_class === "type") active @endif">Type</li>
             </a>
             <a href="{{route('education.level')}}">
-                <li class="list-group-item">Level</li>
+                <li class="list-group-item @if($sub_class === "level") active @endif">Level</li>
             </a>
 
             <li class="list-group-item">PKB</li>

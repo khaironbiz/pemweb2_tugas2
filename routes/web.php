@@ -107,3 +107,4 @@ Route::post('/education/type/store',[\App\Http\Controllers\EducationTypeControll
 
 //level
 Route::get('/education/level',[\App\Http\Controllers\EducationLevelController::class,'index'])->name('education.level')->middleware('auth');
+Route::post('/education/level/store',[\App\Http\Controllers\EducationLevelController::class,'store'])->name('education.level.store')->middleware('auth');
