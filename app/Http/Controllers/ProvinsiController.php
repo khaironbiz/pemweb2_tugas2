@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education_level;
+use App\Models\Education_type;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,15 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        $provinsi = Provinsi::all();
+        $data = [
+            'title'     => "Education Type",
+            'class'     => 'Education',
+            'sub_class' => 'level',
+            'navbar'    => 'education',
+            'provinsi'  => Provinsi::all(),
+        ];
+        return view('landing.wilayah.provinsi', $data);
     }
 
     /**

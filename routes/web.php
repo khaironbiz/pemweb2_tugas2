@@ -33,7 +33,7 @@ Route::get('video',[App\Http\Controllers\HomeController::class,'video'])->name('
 Route::get('contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
 
 //wilayah indonesia
-Route::get('/wilayah',[App\Http\Controllers\HomeController::class,'wilayah'])->name('home.wilayah');
+Route::get('/wilayah',[App\Http\Controllers\ProvinsiController::class,'index'])->name('home.wilayah');
 Route::get('/daerah/kabupatenkota/{provinsi}',[App\Http\Controllers\HomeController::class,'kabupatenkota'])->name('home.kabupatenkota');
 Route::get('/daerah/kecamatan/{kabupatenkota}',[App\Http\Controllers\HomeController::class,'kecamatan'])->name('home.kecamatan');
 Route::get('/daerah/kelurahan/{kecamatan}',[App\Http\Controllers\HomeController::class,'kelurahan'])->name('home.kelurahan');
