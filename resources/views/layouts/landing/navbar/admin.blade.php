@@ -7,7 +7,10 @@
             <a href="{{route('education.type')}}">
                 <li class="list-group-item @if($class=='education') active @endif ">Pendidikan</li>
             </a>
-            <li class="list-group-item">Profesi</li>
+            <a href="{{route('web')}}">
+                <li class="list-group-item">Website</li>
+            </a>
+
             <li class="list-group-item">PKB</li>
             <li class="list-group-item">Admin Area</li>
         </ul>

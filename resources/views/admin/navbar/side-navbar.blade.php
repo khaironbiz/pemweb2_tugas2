@@ -32,7 +32,7 @@
                     <a href="{{ url('/admin/customer')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Data Nasabah</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/profile')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Settings</a>
+                    <a href="{{ url('/admin/events')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Events</a>
                 </li>
                 <hr>
                 <li class="nav-item text-center">

@@ -40,7 +40,7 @@
                     <li class="dropdown"><a href="#" class="@if($navbar=='user'): active @endif"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{route('profile')}}" class=" @if($title=='Profile Karyawan'): active @endif">Profile</a></li>
-                            <li><a href="{{route('home.foto')}}" class=" @if($title=='Media Foto'): active @endif">Profile</a></li>
+                            <li><a href="{{route('profesi')}}" class=" @if($title=='Media Foto'): active @endif">Profesi</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li class="nav-item">
                                 <form action="{{route('logout')}}" method="post">

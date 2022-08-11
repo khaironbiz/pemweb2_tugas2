@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Education_level;
+use App\Models\Education_type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            Education_type::class,
+            Education_level::class,
+        ]);
     }
 }

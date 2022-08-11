@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfesiController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\OrganisasiProfesiController;
@@ -33,17 +34,10 @@ Route::get('video',[App\Http\Controllers\HomeController::class,'video'])->name('
 Route::get('contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
 
 //wilayah indonesia
-Route::get('/wilayah',[App\Http\Controllers\ProvinsiController::class,'index'])->name('home.wilayah');
-Route::get('/daerah/kabupatenkota/{provinsi}',[App\Http\Controllers\HomeController::class,'kabupatenkota'])->name('home.kabupatenkota');
-Route::get('/daerah/kecamatan/{kabupatenkota}',[App\Http\Controllers\HomeController::class,'kecamatan'])->name('home.kecamatan');
-Route::get('/daerah/kelurahan/{kecamatan}',[App\Http\Controllers\HomeController::class,'kelurahan'])->name('home.kelurahan');
+Route::get('/provinsi',[App\Http\Controllers\WilayahController::class,'provinsi'])->name('home.wilayah');
+Route::get('/provinsi/{code}',[App\Http\Controllers\WilayahController::class,'kota'])->name('home.wilayah.kota');
 
 
-//ajax wilayah
-Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
-Route::get('cities', 'DependentDropdownController@cities')->name('cities');
-Route::get('districts', 'DependentDropdownController@districts')->name('districts');
-Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
 //login
 Route::get('/login',[App\Http\Controllers\AuthController::class,'index'])->name('login')->middleware('guest');
@@ -58,13 +52,18 @@ Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->n
 Route::get('/profile/edit',[App\Http\Controllers\UserController::class,'profileedit'])->name('profile.edit')->middleware('auth');
 Route::post('/profile/update/{id}',[App\Http\Controllers\UserController::class,'profileupdate'])->name('profile.update')->middleware('auth');
 
-//user admin
+//admin
+//user
 Route::get('/admin/user',[UserController::class,'index'])->name('user')->middleware('auth');
 Route::post('/admin/user/store',[UserController::class,'store']);
 Route::get('/admin/user/show/{id}',[UserController::class,'show'])->name('user.show')->middleware('auth');
 Route::get('/admin/user/edit/{id}',[UserController::class,'edit'])->name('user.edit')->middleware('auth');
 Route::post('/admin/user/update/{id}',[UserController::class,'update'])->middleware('auth');
 Route::delete('/admin/user/delete/{id}',[UserController::class,'delete'])->middleware('auth');
+
+//events
+Route::get('/admin/events',[EventController::class,'list'])->name('admin.event')->middleware('auth');
+Route::get('/admin/event/create',[EventController::class,'create'])->name('admin.event.create')->middleware('auth');
 
 //customer
 Route::get('/admin/customer',[App\Http\Controllers\CustomerController::class,'index'])->name('customer')->middleware('auth');

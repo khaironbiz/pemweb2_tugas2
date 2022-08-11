@@ -9,4 +9,8 @@ class Kelurahan extends Model
 {
     use HasFactory;
     protected $table = 'indonesia_villages';
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class,'district_code','code');
+    }
 }

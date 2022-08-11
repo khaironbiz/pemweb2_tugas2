@@ -9,6 +9,7 @@
             <h1>Konfigurasi Website</h1>
         </div>
         <div class="row justify-content-center mt-2">
+
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
@@ -144,46 +145,7 @@
             </div>
         </div>
     </section><!-- End Services Section -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var url = $('meta[name="url"]').attr('content');
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#provinsi').change(function(){
-                var id = $(this).children(":selected").attr("id");
-                $.ajax({
-                    url: '{{route('root')}}/daerah/kabupatenkota/' + id,
-                    type: 'GET',
-                    success: function(val) {
-                        $('#kabupatenkota').html(val);
-                    }
-                });
-            });
-            $('#kabupatenkota').change(function(){
-                var id = $(this).children(":selected").attr("id");
-                $.ajax({
-                    url: url + '/daerah/kecamatan/' + id,
-                    type: 'GET',
-                    success: function(val) {
-                        $('#kecamatan').html(val);
-                    }
-                });
-            });
-            $('#kecamatan').change(function(){
-                var id = $(this).children(":selected").attr("id");
-                $.ajax({
-                    url: url + '/daerah/kelurahan/' + id,
-                    type: 'GET',
-                    success: function(val) {
-                        $('#kelurahan').html(val);
-                    }
-                });
-            });
-        });
-    </script>
+
 @endsection
 @push('scripts')
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>

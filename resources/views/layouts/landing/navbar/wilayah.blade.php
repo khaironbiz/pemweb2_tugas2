@@ -4,8 +4,8 @@
             <a href="{{route('admin')}}"><b>{{$title}}</b></a>
         </div>
         <ul class="list-group list-group-flush">
-            <a href="{{route('education.type')}}">
-                <li class="list-group-item @if($class=='education') active @endif ">Pendidikan</li>
+            <a href="{{route('home.wilayah')}}">
+                <li class="list-group-item @if($sub_class=='provinsi') active @endif ">Provinsi</li>
             </a>
             <li class="list-group-item">Profesi</li>
             <li class="list-group-item">PKB</li>

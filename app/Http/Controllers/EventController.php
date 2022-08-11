@@ -8,11 +8,7 @@ use App\Http\Requests\UpdateEventRequest;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //tampil di landing page
     public function index()
     {
         $data = [
@@ -29,6 +25,19 @@ class EventController extends Controller
         ];
         return view('landing.events.detail', $data);
     }
+    //tampil di admin
+    public function list()
+    {
+        $events = Event::all();
+        $data = [
+            'title'     => 'Events',
+            'navbar'    => 'events',
+            'class'     => 'event',
+            'sub_class' => 'list',
+            'events'    => $events
+        ];
+        return view('admin.event.index', $data);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +46,15 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+
+        $data = [
+            'title'     => 'Events',
+            'navbar'    => 'events',
+            'class'     => 'event',
+            'sub_class' => 'list',
+
+        ];
+        return view('admin.event.create', $data);
     }
 
     /**

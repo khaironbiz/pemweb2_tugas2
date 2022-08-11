@@ -22,9 +22,11 @@ class WebController extends Controller
     public function admin()
     {
         $data = [
+
             'title'     => 'Website Settings',
             'class'     => 'Website',
             'sub_class' => 'admin',
+            'navbar'    => 'login',
             'webs'      =>  Web::all()
         ];
         return view('admin.web.admin', $data);

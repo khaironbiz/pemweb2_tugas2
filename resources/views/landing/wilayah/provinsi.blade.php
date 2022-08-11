@@ -32,9 +32,15 @@
                                 @foreach($provinsi as $p)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$p->name}}</td>
+                                    <td>
+                                        <a href="{{route('home.wilayah.kota', ['code'=>$p->code])}}">
+                                            {{$p->name}}
+
+                                        </a>
+
+                                    </td>
                                     <td>{{$p->kota->count()}}</td>
-                                    <td></td>
+                                    <td>{{$p->kecamatan->count()}}</td>
                                     <td></td>
                                 </tr>
                                 @endforeach

@@ -11,6 +11,11 @@ class Provinsi extends Model
     protected $table = 'indonesia_provinces';
     public function kota()
     {
-        return $this->hasMany(Kota::class);
+        return $this->hasMany(Kota::class,'province_code','code');
     }
+    public function kecamatan()
+    {
+        return $this->hasManyThrough(Kecamatan::class,Kota::class,  'province_code','city_code','code','code');
+    }
+
 }

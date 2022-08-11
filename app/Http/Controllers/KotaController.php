@@ -12,12 +12,17 @@ class KotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($code)
     {
-        if(isset($_GET['id']) && $_GET['id'] !=''){
-            $code_kota = $_GET['id'];
-            $kota = Kota::firstWhere('code', $code_kota);
-        }
+        $kota = Kota::where('province_code', $code)->get();;
+        $data = [
+            'title'     => "Education Type",
+            'class'     => 'Education',
+            'sub_class' => 'level',
+            'navbar'    => 'education',
+            'kota'      => $kota,
+            ];
+        return view('landing.wilayah.kota', $data);
 
     }
 

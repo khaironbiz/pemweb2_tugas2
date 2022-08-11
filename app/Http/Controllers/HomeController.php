@@ -36,7 +36,10 @@ class HomeController extends Controller
     {
 
         $data = [
+
             'title'     => 'Web Setting',
+            'class'     => 'Settings',
+            'sub_class' => 'website',
             'navbar'    => 'web',
             'provinsi'  => Provinsi::all(),
             'kota'      => Kota::all(),
