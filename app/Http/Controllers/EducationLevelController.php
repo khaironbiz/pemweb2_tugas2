@@ -17,13 +17,17 @@ class EducationLevelController extends Controller
     public function index()
     {
         //
+        $education_level = Education_level::with(['education_type'])
+                            ->orderBy('education_type_id', 'ASC')
+                            ->orderBy('grade', 'ASC')
+                            ->get();
         $data = [
-            'title'     => "Education Type",
+            'title'     => "Education Level",
             'class'     => 'Education',
             'sub_class' => 'level',
             'navbar'    => 'education',
             'education_type'=> Education_type::all(),
-            'education_level'=> Education_level::all(),
+            'education_level'=> $education_level,
         ];
         return view('landing.education.level.index', $data);
     }
@@ -52,6 +56,7 @@ class EducationLevelController extends Controller
         ];
         $education_level = new Education_level();
         $education_level->education_type_id=$request->education_type_id;
+        $education_level->grade=$request->grade;
         $education_level->education_level=$request->education_level;
         $education_level->slug=md5(uniqid());
         $education_level->save();

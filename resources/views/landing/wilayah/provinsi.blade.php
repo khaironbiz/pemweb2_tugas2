@@ -26,7 +26,6 @@
                                 <th>Provinsi</th>
                                 <th>Kota</th>
                                 <th>Kecamatan</th>
-                                <th>Desa</th>
                                 </thead>
                                 <tbody>
                                 @foreach($provinsi as $p)
@@ -41,7 +40,6 @@
                                     </td>
                                     <td>{{$p->kota->count()}}</td>
                                     <td>{{$p->kecamatan->count()}}</td>
-                                    <td></td>
                                 </tr>
                                 @endforeach
                                 </tbody>

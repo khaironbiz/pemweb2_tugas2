@@ -35,7 +35,7 @@
                                 <th>#</th>
                                 <th>Tipe</th>
                                 <th>Level</th>
-                                <th>Count</th>
+                                <th>Grade</th>
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -45,7 +45,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$e->education_type->education_type}}</td>
                                     <td>{{$e->education_level}}</td>
-                                    <td></td>
+                                    <td>{{$e->grade}}</td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-primary">Detail</a>
                                     </td>
@@ -83,6 +83,14 @@
                                 <option value="{{$et->id}}">{{$et->education_type}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <label>Grade</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control form-control-sm" type="number" name="grade">
                         </div>
                     </div>
                     <div class="row mb-2">

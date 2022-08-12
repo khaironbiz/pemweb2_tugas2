@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('education_type_id');
             $table->string('education_level');
             $table->string('slug');
+            $table->integer('grade');
             $table->timestamps();
         });
     }

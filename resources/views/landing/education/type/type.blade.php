@@ -35,7 +35,8 @@
                                 <th>#</th>
                                 <th>Sifat</th>
                                 <th>Tipe</th>
-                                <th>Count</th>
+                                <th>Level</th>
+                                <th>User</th>
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,7 @@
                                         @endif
                                     </td>
                                     <td>{{$e->education_type}}</td>
+                                    <td>{{$e->education_level->count()}}</td>
                                     <td></td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-primary">Detail</a>

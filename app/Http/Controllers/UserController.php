@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education_user;
 use App\Models\Example;
 use App\Models\Profesi;
 use App\Http\Requests\user\Store;
@@ -29,13 +30,15 @@ class UserController extends Controller
         return view('admin.user.index', $data);
     }
     public function profile(){
-        $username = Auth::user()->username;
+//        $username = Auth::user()->username;
+        $pendidikan = Education_user::with('education_level')->where('user_id', Auth::user()->id)->get();
         $data = [
             'title'     => "Profile Karyawan",
             'class'     => 'User',
             'sub_class' => 'profile',
             'navbar'    => 'profile',
-            'user'      => User::firstWhere('username', $username),
+            'user'      => Auth::user(),
+            'pendidikan'=> $pendidikan
         ];
         return view('landing.user.profile', $data);
     }
@@ -55,8 +58,8 @@ class UserController extends Controller
         $user->nama_depan = $request->nama_depan;
         $user->nama_belakang = $request->nama_belakang;
         $user->nama_lengkap = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
-        $user->tgl_lahir="1984-09-06";
-        $user->jk=1;
+        $user->tgl_lahir ="1984-09-06";
+        $user->jk = 1;
         $user->username = Str::slug($request->username, '-');
         $user->email = $request->email;
         $user->phone_cell = $request->phone_cell;

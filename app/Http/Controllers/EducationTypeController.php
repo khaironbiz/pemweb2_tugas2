@@ -23,7 +23,7 @@ class EducationTypeController extends Controller
             'class'     => 'Education',
             'sub_class' => 'type',
             'navbar'    => 'education',
-            'education_type'=> Education_type::all(),
+            'education_type'=> Education_type::with(['education_level'])->get(),
         ];
         return view('landing.education.type.type', $data);
     }

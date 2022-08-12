@@ -20,13 +20,24 @@ class UserSeeder extends Seeder
 //            ->count(50)
 //            ->hasPosts(1)
 //            ->create();
-        DB::table('users')->insert([
-            'nama_depan'        => Str::random(10),
-            'nama_belakang'     => Str::random(10).'@gmail.com',
-            'gelar_depan'       => Str::random(10),
-            'gelar_belakang'    => Str::random(10),
-            'password'          => Hash::make('password'),
-        ]);
-
+        $data =[
+            [
+                'nama_depan'        => 'Khairon',
+                'nama_belakang'     => '',
+                'gelar_depan'       => 'Ns.',
+                'gelar_belakang'    => 'S.Kep., S.Kom., M.Kom., MH.',
+                'nama_lengkap'      => 'Ns. Khairon, S.Kep., S.Kom., M.Kom., MH.',
+                'tgl_lahir'         => '1984-09-06',
+                'jk'                => 1,
+                'nira'              => '31720126348',
+                'username'          => md5(uniqid()),
+                'email'             => 'khaironbiz@gmail.com',
+                'phone_cell'        => '081213798746',
+                'foto'              => 'doctors-3.jpg',
+                'created_at'        => date('Y-m-d H:i:s'),
+                'password'          => bcrypt('password')
+            ],
+        ];
+        \DB::table('users')->insert($data);
     }
 }

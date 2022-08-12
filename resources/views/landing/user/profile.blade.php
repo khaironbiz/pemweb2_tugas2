@@ -79,9 +79,30 @@
                             <div class="card-header">
                                 <b>Riwayat Pendidikan</b>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-striped" id="example1">
 
+                            <div class="card-body">
+                                <a href="{{route('education.user.create')}}" class="btn btn-sm btn-primary mb-2">Tambah Data</a>
+                                <table class="table table-striped" id="example1">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Level Pendidikan</th>
+                                        <th>Program Studi</th>
+                                        <th>Tahun Lulus</th>
+                                        <th>Aksi</th>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($pendidikan as $p)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$p->education_level->education_level}}</td>
+                                            <td>{{$p->program_studi}}</td>
+                                            <td>{{$p->tahun_lulus}}</td>
+                                            <td>
+                                                <a href="{{route('education.user.show',['slug'=>$p->slug])}}" class="btn btn-sm btn-info">Detail</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
                                 </table>
                             </div>
 

@@ -34,8 +34,8 @@ Route::get('video',[App\Http\Controllers\HomeController::class,'video'])->name('
 Route::get('contact',[App\Http\Controllers\HomeController::class,'contact'])->name('home.contact');
 
 //wilayah indonesia
-Route::get('/provinsi',[App\Http\Controllers\WilayahController::class,'provinsi'])->name('home.wilayah');
-Route::get('/provinsi/{code}',[App\Http\Controllers\WilayahController::class,'kota'])->name('home.wilayah.kota');
+Route::get('/provinsi',[App\Http\Controllers\ProvinsiController::class,'index'])->name('home.wilayah');
+Route::get('/provinsi/{code}',[App\Http\Controllers\ProvinsiController::class,'kota'])->name('home.wilayah.kota');
 
 
 
@@ -107,3 +107,8 @@ Route::post('/education/type/store',[\App\Http\Controllers\EducationTypeControll
 //level
 Route::get('/education/level',[\App\Http\Controllers\EducationLevelController::class,'index'])->name('education.level')->middleware('auth');
 Route::post('/education/level/store',[\App\Http\Controllers\EducationLevelController::class,'store'])->name('education.level.store')->middleware('auth');
+
+//education user
+Route::get('/profile/education/create',[\App\Http\Controllers\EducationUserController::class,'create'])->name('education.user.create')->middleware('auth');
+Route::post('/profile/education/stote', [\App\Http\Controllers\EducationUserController::class,'store'])->name('education.user.store')->middleware('auth');
+Route::get('/profile/education/show/{slug}',[\App\Http\Controllers\EducationUserController::class,'show'])->name('education.user.show')->middleware('auth');
