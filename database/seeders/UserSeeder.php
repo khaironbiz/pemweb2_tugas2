@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
                 'tgl_lahir'         => '1984-09-06',
                 'jk'                => 1,
                 'nira'              => '31720126348',
+                'nik'               => '3209290609840002',
                 'username'          => md5(uniqid()),
                 'email'             => 'khaironbiz@gmail.com',
                 'phone_cell'        => '081213798746',

@@ -23,9 +23,10 @@
                             </div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
+
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id">
+                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="level_pendidikan">
                                                 <option value="">----pilih----</option>
                                                 @foreach($pendidikan as $p)
                                                 <option value="{{$p->id}}">{{$p->education_level}}</option>
@@ -35,10 +36,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Program Studi" name="program_studi">
+                                        <div class="form-floating mb-3 ">
+                                            <input type="text" class="form-control @error('program_studi') is-invalid @enderror" id="floatingInput" placeholder="Program Studi" name="program_studi">
                                             <label for="floatingInput">Jurusan</label>
                                         </div>
+
+                                        @error('title')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">

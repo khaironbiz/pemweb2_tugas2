@@ -24,10 +24,20 @@
                         <form action="{{route('auth')}}" method="post">
                             @csrf
                         <div class="card-body">
+
                             <div class="row justify-content-center">
                                 <div class="col-md-10">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email" value="{{old('email')}}">
                                         <label for="floatingInput">Email address</label>
                                     </div>
                                 </div>

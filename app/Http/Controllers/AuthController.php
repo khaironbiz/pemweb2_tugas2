@@ -44,6 +44,9 @@ class AuthController extends Controller
             'email'     => ['required', 'email:dns'],
             'password'  => ['required', 'min:6'],
         ]);
+        if( ! $credentials){
+            return redirect()->route('login')->with(['success' => 'Selamat anda berhasil login']);
+        }
 
         if(Auth::attempt($credentials)){
             if(Auth::user()->id == 1){

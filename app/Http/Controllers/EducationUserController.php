@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateEducation_userRequest;
 //use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class EducationUserController extends Controller
 {
@@ -47,7 +48,7 @@ class EducationUserController extends Controller
             'user'      => Auth::user()
 
         ];
-        return view('landing.user.add-pendidikan', $data);
+        return view('landing.user.education.create', $data);
     }
 
     /**
@@ -58,29 +59,53 @@ class EducationUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'program_studi'     => 'required',
+            'level_pendidikan'  => 'required',
+            'institusi'         => 'required',
+            'tahun_lulus'       => 'required',
+            'nomor_ijazah'      => 'required',
+            'ttd_ijazah'        => 'required',
+            'pendidikan_terahir'=> 'required',
+            'file'              => 'required|file',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->with('errorForm', $validator->errors()->getMessages())
+                ->withInput();
+        }
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('file');
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'assets/upload/files/ijazah/';
-        // upload file
-        $nama_file_baru = uniqid().$file->getClientOriginalName();
-        $file->move($tujuan_upload,$nama_file_baru);
+        //deklarasi object education user
         $data = new Education_user();
         $data->user_id              = Auth::user()->id;
         $data->program_studi        = $request->program_studi;
-        $data->education_level_id   = $request->id;
+        $data->education_level_id   = $request->level_pendidikan;
         $data->institusi            = $request->institusi;
         $data->tahun_lulus          = $request->tahun_lulus;
         $data->nomor_ijazah         = $request->nomor_ijazah;
         $data->ttd_ijazah           = $request->ttd_ijazah;
         $data->pendidikan_terahir   = $request->pendidikan_terahir;
-        $data->file_ijazah          = $nama_file_baru;
         $data->slug                 = md5(uniqid());
+        if($file !=''){
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload          = 'assets/upload/files/ijazah/';
+            // upload file
+            $nama_file_baru         = uniqid().$file->getClientOriginalName();
+            $file->move($tujuan_upload,$nama_file_baru);
+            $data->file_ijazah      = $nama_file_baru;
+
+        }else{
+
+        }
+        //aksi simpan ke database
         $tambah_data = $data->save();
         if($tambah_data){
-            return redirect()->route('education.user.create')->with(['success'=>'Data berhasil disimpan']);
+            return redirect()->route('education.education_user.create')->with(['success'=>'Data berhasil disimpan']);
+        }else{
+            return redirect()->route('education.education_user.create')->with(['error'=>'Data gagal disimpan']);
         }
+
     }
 
     /**
@@ -107,7 +132,7 @@ class EducationUserController extends Controller
             'user'      => Auth::user()
 
         ];
-        return view('landing.user.show-pendidikan', $data);
+        return view('landing.user.education.show', $data);
     }
 
     /**
@@ -116,9 +141,25 @@ class EducationUserController extends Controller
      * @param  \App\Models\Education_user  $education_user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Education_user $education_user)
+    public function edit($slug)
     {
         //
+        $education_user = Education_user::where('slug', $slug)->first();
+        $pendidikan     = DB::table('education_levels')
+            ->join('education_types', 'education_levels.education_type_id', '=', 'education_types.id')
+            ->where('education_types.sifat', '!=', '2')
+            ->select('education_levels.*')->get();
+        $data = [
+            'title'     => "Tambah Pendidikan",
+            'class'     => 'User',
+            'sub_class' => 'profile',
+            'navbar'    => 'profile',
+            'education' => $education_user,
+            'pendidikan'=> $pendidikan,
+            'user'      => Auth::user()
+
+        ];
+        return view('landing.user.education.edit', $data);
     }
 
     /**
@@ -128,9 +169,61 @@ class EducationUserController extends Controller
      * @param  \App\Models\Education_user  $education_user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEducation_userRequest $request, Education_user $education_user)
+    public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'program_studi'     => 'required',
+            'level_pendidikan'  => 'required',
+            'institusi'         => 'required',
+            'tahun_lulus'       => 'required',
+            'nomor_ijazah'      => 'required',
+            'ttd_ijazah'        => 'required',
+            'pendidikan_terahir'=> 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->with('errorForm', $validator->errors()->getMessages())
+                ->withInput();
+        }
+        // menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('file');
+        //deklarasi object education user
+        $data = Education_user::find($id);
+        $data->user_id              = Auth::user()->id;
+        $data->program_studi        = $request->program_studi;
+        $data->education_level_id   = $request->level_pendidikan;
+        $data->institusi            = $request->institusi;
+        $data->tahun_lulus          = $request->tahun_lulus;
+        $data->nomor_ijazah         = $request->nomor_ijazah;
+        $data->ttd_ijazah           = $request->ttd_ijazah;
+        $data->pendidikan_terahir   = $request->pendidikan_terahir;
+        $data->slug                 = md5(uniqid());
+        if($file !=''){
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload          = 'assets/upload/files/ijazah/';
+            // delete file lama
+            $file_lama = $tujuan_upload.$data->file_ijazah;
+            if(file_exists($file_lama)){
+                unlink($file_lama);
+            }
+
+            // upload file
+            $nama_file_baru         = uniqid().$file->getClientOriginalName();
+            $file->move($tujuan_upload,$nama_file_baru);
+            $data->file_ijazah      = $nama_file_baru;
+            $tambah_data = $data->save();
+
+        }else{
+            $tambah_data = $data->save();
+        }
+        //aksi simpan ke database
+
+        if($tambah_data){
+            return redirect()->route('education.user.show', ['slug'=>$data->slug])->with(['success'=>'Data berhasil disimpan']);
+        }else{
+            return redirect()->back()->with(['error'=>'Data gagal disimpan']);
+        }
     }
 
     /**

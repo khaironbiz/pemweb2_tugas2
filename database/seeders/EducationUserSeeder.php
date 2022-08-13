@@ -22,6 +22,7 @@ class EducationUserSeeder extends Seeder
                 'institusi'             => 'Politeknik Kesehatan Tasikmalaya',
                 'tahun_lulus'           => '2006-09-07',
                 'slug'                  => md5(uniqid()),
+                'pendidikan_terahir'    => 0,
                 'created_at'            => date('Y-m-d H:i:s'),
             ],
             [
@@ -31,15 +32,17 @@ class EducationUserSeeder extends Seeder
                 'institusi'             => 'Universitas Binawan',
                 'tahun_lulus'           => '2019-09-07',
                 'slug'                  => md5(uniqid()),
+                'pendidikan_terahir'    => 0,
                 'created_at'            => date('Y-m-d H:i:s'),
             ],
             [
                 'user_id'               => 1,
-                'education_level_id'    => 12,
+                'education_level_id'    => 14,
                 'program_studi'         => 'Ners',
                 'institusi'             => 'Universitas Binawan',
                 'tahun_lulus'           => '2020-09-07',
-                'slug'                  => md5(uniqid()),
+                'slug'                  => md5('1 Ners Universitas Binawan'),
+                'pendidikan_terahir'    => 0,
                 'created_at'            => date('Y-m-d H:i:s'),
             ],
         ];

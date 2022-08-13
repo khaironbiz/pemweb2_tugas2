@@ -110,7 +110,7 @@ class EducationLevelSeeder extends Seeder
             ],
             [
                 'education_type_id' => 6,
-                'education_level'   => 'Generalis',
+                'education_level'   => 'Profesi',
                 'slug'              => md5(Str::random(10)),
                 'grade'             => 8,
                 'created_at'        => date('Y-m-d H:i:s')

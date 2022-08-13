@@ -112,3 +112,5 @@ Route::post('/education/level/store',[\App\Http\Controllers\EducationLevelContro
 Route::get('/profile/education/create',[\App\Http\Controllers\EducationUserController::class,'create'])->name('education.user.create')->middleware('auth');
 Route::post('/profile/education/stote', [\App\Http\Controllers\EducationUserController::class,'store'])->name('education.user.store')->middleware('auth');
 Route::get('/profile/education/show/{slug}',[\App\Http\Controllers\EducationUserController::class,'show'])->name('education.user.show')->middleware('auth');
+Route::get('/profile/education/edit/{slug}',[\App\Http\Controllers\EducationUserController::class,'edit'])->name('education.user.edit')->middleware('auth');
+Route::post('/profile/education/update/{id}',[\App\Http\Controllers\EducationUserController::class,'update'])->name('education.user.update')->middleware('auth');
