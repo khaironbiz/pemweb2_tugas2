@@ -50,7 +50,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             if(Auth::user()->id == 1){
-                return redirect()->route('root')->with(['success' => 'Selamat anda berhasil login']);
+                return redirect()->route('profile')->with(['success' => 'Selamat anda berhasil login']);
             }else{
                 return redirect()->route('profile')->with(['success' => 'Selamat anda berhasil login']);
             }

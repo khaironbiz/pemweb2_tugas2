@@ -10,9 +10,12 @@
             <a href="{{route('web')}}">
                 <li class="list-group-item">Website</li>
             </a>
+            <a href="{{route('event.list')}}">
+                <li class="list-group-item">Events</li>
+            </a>
 
             <li class="list-group-item">PKB</li>
-            <li class="list-group-item">Admin Area</li>
+
         </ul>
     </div>
 </div>

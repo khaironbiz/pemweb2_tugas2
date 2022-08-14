@@ -19,14 +19,34 @@ class EventController extends Controller
     }
     public function detail($slug)
     {
+
         $data = [
             'title'     => 'Event',
             'navbar'    => 'events',
         ];
         return view('landing.events.detail', $data);
     }
-    //tampil di admin
+    //by kontributor
     public function list()
+    {
+
+        $data = [
+            'title'     => 'Event',
+            'navbar'    => 'events',
+        ];
+        return view('landing.events.kontributor.list', $data);
+    }
+    public function create()
+    {
+
+        $data = [
+            'title'     => 'Event',
+            'navbar'    => 'events',
+        ];
+        return view('landing.events.kontributor.create', $data);
+    }
+    //tampil di admin
+    public function all()
     {
         $events = Event::all();
         $data = [
@@ -38,15 +58,8 @@ class EventController extends Controller
         ];
         return view('admin.event.index', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add()
     {
-
         $data = [
             'title'     => 'Events',
             'navbar'    => 'events',
@@ -56,13 +69,6 @@ class EventController extends Controller
         ];
         return view('admin.event.create', $data);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreEventRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreEventRequest $request)
     {
         //

@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('home.events.detail', ['slug'=>'slug-bagus'])}}">
+                            <a href="{{route('home.event.detail', ['slug'=>'slug-bagus'])}}">
                                 <b>Judul Berita</b><br>
                                 <p class="text-justify">Head line berita head line berita head line beritahead line beritahead line beritahead line berita</p>
                             </a>

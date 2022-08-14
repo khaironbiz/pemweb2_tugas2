@@ -49,7 +49,7 @@
                             </div>
                             @endif
 
-                            <a href="{{route('admin.event.create')}}" class="btn btn-primary">Tambah</a>
+                            <a href="{{route('admin.event.add')}}" class="btn btn-primary">Tambah</a>
 
                         </div>
                         <!-- /.card-body -->

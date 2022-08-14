@@ -137,7 +137,15 @@
 
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="{{route('admin')}}" class="btn btn-danger">Back</a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
 
