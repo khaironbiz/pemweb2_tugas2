@@ -101,9 +101,9 @@ class EducationUserController extends Controller
         //aksi simpan ke database
         $tambah_data = $data->save();
         if($tambah_data){
-            return redirect()->route('education.education_user.create')->with(['success'=>'Data berhasil disimpan']);
+            return redirect()->route('education.user.create')->with(['success'=>'Data berhasil disimpan']);
         }else{
-            return redirect()->route('education.education_user.create')->with(['error'=>'Data gagal disimpan']);
+            return redirect()->route('education.user.create')->with(['error'=>'Data gagal disimpan']);
         }
 
     }
@@ -204,7 +204,7 @@ class EducationUserController extends Controller
             $tujuan_upload          = 'assets/upload/files/ijazah/';
             // delete file lama
             $file_lama = $tujuan_upload.$data->file_ijazah;
-            if(file_exists($file_lama)){
+            if(file_exists($file_lama)===true){
                 unlink($file_lama);
             }
 
@@ -212,7 +212,7 @@ class EducationUserController extends Controller
             $nama_file_baru         = uniqid().$file->getClientOriginalName();
             $file->move($tujuan_upload,$nama_file_baru);
             $data->file_ijazah      = $nama_file_baru;
-            $tambah_data = $data->save();
+            $tambah_data            = $data->save();
 
         }else{
             $tambah_data = $data->save();
@@ -226,14 +226,18 @@ class EducationUserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Education_user  $education_user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Education_user $education_user)
+    public function destroy(Request $request, $id)
     {
-        //
+        //delete data
+        $data = Education_user::find($id);
+        $delete_data = $data->delete();
+        $lokasi_file = 'assets/upload/files/ijazah/'.$data->file_ijazah;
+        if($delete_data){
+            if(file_exists($lokasi_file)){
+                unlink($lokasi_file);
+            }
+            return redirect()->route('profile')->with(['success'=>'Data berhasil dihapus']);
+
+        }
     }
 }

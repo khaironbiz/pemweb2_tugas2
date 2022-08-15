@@ -23,6 +23,8 @@ class CustomerController extends Controller
 
         $data = [
             'title'     => 'Data Nasabah',
+            'class'     => 'customer',
+            'sub_class' => 'all',
             'example'   => Customer::all(),
         ];
         return view('admin.customer.index', $data);

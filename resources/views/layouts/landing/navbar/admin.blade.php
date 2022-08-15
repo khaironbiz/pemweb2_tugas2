@@ -13,9 +13,9 @@
             <a href="{{route('event.list')}}">
                 <li class="list-group-item">Events</li>
             </a>
-
-            <li class="list-group-item">PKB</li>
-
+            <a href="{{route('partner')}}">
+                <li class="list-group-item">Partner</li>
+            </a>
         </ul>
     </div>
 </div>

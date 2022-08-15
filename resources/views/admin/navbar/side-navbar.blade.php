@@ -26,13 +26,16 @@
 
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/admin/user')}}" class="nav-link"><i class="far fa-user nav-icon"></i> Data Karyawan</a>
+                    <a href="{{ url('/admin/user')}}" class="nav-link @if($class==='User') active @endif"><i class="far fa-user nav-icon"></i> Data Karyawan</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/admin/customer')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Data Nasabah</a>
+                    <a href="{{ url('/admin/customer')}}" class="nav-link @if($class==='customer') active @endif"><i class="far fa-circle nav-icon"></i> Data Nasabah</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/admin/events')}}" class="nav-link"><i class="far fa-circle nav-icon"></i> Events</a>
+                    <a href="{{ url('/admin/events')}}" class="nav-link @if($class==='event') active @endif"><i class="far fa-circle nav-icon"></i> Events</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.partner.list')}}" class="nav-link @if($class==='partner') active @endif"><i class="far fa-circle nav-icon"></i> Partner</a>
                 </li>
                 <hr>
                 <li class="nav-item text-center">
@@ -41,8 +44,6 @@
                         <button type="submit" class="nav-link btn-danger text-white">Logout</button>
                     </form>
                 </li>
-
-
             </ul>
           </li>
         </ul>

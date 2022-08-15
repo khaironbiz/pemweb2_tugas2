@@ -52,6 +52,7 @@ Route::post('/profile/education/stote', [\App\Http\Controllers\EducationUserCont
 Route::get('/profile/education/show/{slug}',[\App\Http\Controllers\EducationUserController::class,'show'])->name('education.user.show')->middleware('auth');
 Route::get('/profile/education/edit/{slug}',[\App\Http\Controllers\EducationUserController::class,'edit'])->name('education.user.edit')->middleware('auth');
 Route::post('/profile/education/update/{id}',[\App\Http\Controllers\EducationUserController::class,'update'])->name('education.user.update')->middleware('auth');
+Route::post('/profile/education/destroy/{id}',[\App\Http\Controllers\EducationUserController::class,'destroy'])->name('education.user.destroy')->middleware('auth');
 
 
 //kontributor
@@ -136,6 +137,26 @@ Route::get('/qrcode/{id}', [OrganisasiController::class, 'edit'])->name('generat
 //website
 Route::get('/admin/website',[WebController::class,'admin'])->name('web_admin')->middleware('auth');
 
+//partner
+//home
+Route::get('partner', [\App\Http\Controllers\PartnerController::class, 'index'])->name('partner');
+Route::get('partner/detail/{slug}', [\App\Http\Controllers\PartnerController::class, 'show'])->name('partner.show');
+
+//my partner
+Route::get('partner/main', [\App\Http\Controllers\PartnerController::class, 'main'])->name('partner.main')->middleware('auth');
+Route::get('partner/daftar', [\App\Http\Controllers\PartnerController::class, 'daftar'])->name('partner.daftar')->middleware('auth');
+Route::post('partner/register', [\App\Http\Controllers\PartnerController::class, 'register'])->name('partner.register')->middleware('auth');
+Route::get('partner/edit', [\App\Http\Controllers\PartnerController::class, 'edit'])->name('partner.edit')->middleware('auth');
+Route::post('partner/update', [\App\Http\Controllers\PartnerController::class, 'update'])->name('partner.update')->middleware('auth');
+
+//admin
+Route::get('admin/partner/list', [\App\Http\Controllers\PartnerController::class, 'list'])->name('admin.partner.list')->middleware('auth');
+Route::get('admin/partner/create', [\App\Http\Controllers\PartnerController::class, 'create'])->name('admin.partner.create')->middleware('auth');
+Route::post('admin/partner/store', [\App\Http\Controllers\PartnerController::class, 'store'])->name('admin.partner.store')->middleware('auth');
+Route::get('admin/partner/detail/{slug}', [\App\Http\Controllers\PartnerController::class, 'detail'])->name('admin.partner.detail')->middleware('auth');
+Route::get('admin/partner/edit/{slug}', [\App\Http\Controllers\PartnerController::class, 'edit_partner'])->name('admin.partner.edit')->middleware('auth');
+Route::post('admin/partner/update/{id}', [\App\Http\Controllers\PartnerController::class, 'update_partner'])->name('admin.partner.update')->middleware('auth');
+Route::post('partner/delete/{id}', [\App\Http\Controllers\PartnerController::class, 'destroy'])->name('partner.destroy')->middleware('auth');
 
 
 

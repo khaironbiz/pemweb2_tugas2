@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="col-6 text-end">
 
-                                        <form action="{{route('education.user.store')}}">
+                                        <form action="{{route('education.user.destroy', ['id'=> $education->id])}}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         </form>
@@ -83,8 +83,10 @@
                                         <a href="{{route('education.user.edit',['slug'=>$education->slug])}}" class="btn btn-success">Edit Pendidikan</a>
                                     </div>
                                     <div class="col-md-12">
-                                        @if(file_exists('assets/upload/files/ijazah/'.$education->file_ijazah))
+                                        @if(file_exists('assets/upload/files/ijazah/'.$education->file_ijazah) ===true)
                                             <embed type="application/pdf" src="{{asset('assets/upload/files/ijazah/'.$education->file_ijazah)}}" width="460" height="980"></embed>
+                                        @else
+                                            {{'assets/upload/files/ijazah/'.$education->file_ijazah}}
                                         @endif
                                     </div>
                                 </div>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('date_publish');
             $table->string('headline');
             $table->string('banner');
+            $table->foreignId('created_by');
             $table->timestamps();
         });
     }

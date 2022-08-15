@@ -18,9 +18,10 @@
                         <li><a href="{{route('home.video')}}" class=" @if($title=='Media Video'): active @endif">Video</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a class="nav-link @if($navbar=='contact'): active @endif" href="{{route('home.contact')}}">Contact</a></li>
+                <li class="dropdown"><a href="#"><span>Other</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Drop Down 1</a></li>
+                        <li><a href="{{route('partner')}}">Partner</a></li>
                         <li class="dropdown"><a href="#"><span>{{url()->previous()}}</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
                                 <li><a href="#">Deep Drop Down 1</a></li>
@@ -35,7 +36,7 @@
                         <li><a href="#">Drop Down 4</a></li>
                     </ul>
                 </li>
-                <li><a class="nav-link @if($navbar=='contact'): active @endif" href="{{route('home.contact')}}">Contact</a></li>
+
                 @if(isset(Auth::user()->username))
                     <li class="dropdown"><a href="#" class="@if($navbar=='user'): active @endif"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>

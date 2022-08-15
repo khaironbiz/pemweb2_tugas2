@@ -31,7 +31,10 @@ class UserController extends Controller
     }
     public function profile(){
 //        $username = Auth::user()->username;
-        $pendidikan = Education_user::with('education_level')->where('user_id', Auth::user()->id)->get();
+        $pendidikan = Education_user::with('education_level')
+            ->where('user_id', Auth::user()->id)
+            ->orderBy('tahun_lulus', 'ASC')
+            ->get();
         $data = [
             'title'     => "Profile Karyawan",
             'class'     => 'User',
