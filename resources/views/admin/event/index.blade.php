@@ -50,7 +50,27 @@
                             @endif
 
                             <a href="{{route('admin.event.add')}}" class="btn btn-primary">Tambah</a>
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                <th>#</th>
+                                <th>Judul</th>
+                                <th>Penyedia</th>
+                                <th>Banner</th>
+                                <th>Detail</th>
+                                </thead>
+                                <tbody>
+                                @foreach($events as $data)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$data->judul}}</td>
+                                    <td>{{$data->partner->nama_partner}}</td>
+                                    <td>{{$data->banner}}</td>
+                                    <td><a href="{{route('admin.event.detail_event', ['slug'=>$data->slug])}}" class="btn btn-sm btn-info">Detail</a></td>
+                                </tr>
+                                @endforeach
+                                </tbody>
 
+                            </table>
                         </div>
                         <!-- /.card-body -->
                     </div>

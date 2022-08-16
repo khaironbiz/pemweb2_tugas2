@@ -20,9 +20,15 @@ return new class extends Migration
             $table->string('ringkasan');
             $table->text('isi');
             $table->date('date_publish');
-            $table->string('headline');
+            $table->integer('harga');
+            $table->integer('kuota');
             $table->string('banner');
+            $table->date('date_mulai');
+            $table->date('date_selesai');
+            $table->string('tempat');
             $table->foreignId('created_by');
+            $table->integer('status');
+            $table->string('slug');
             $table->timestamps();
         });
     }

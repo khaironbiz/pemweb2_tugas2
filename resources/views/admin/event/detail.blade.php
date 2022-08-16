@@ -18,21 +18,18 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
                         <!-- /.card -->
-
                         <div class="card">
-                            @include('admin.sub_menu.user')
-
                             <!-- /.card-header -->
+                            <div class="card-header">
+                                {{$event->judul}}
+                            </div>
                             <div class="card-body">
-
                                 @if(\Session::has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         {!! \Session::get('success') !!}
@@ -42,32 +39,62 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <label class="col-sm-2">Nama</label>
-                                    <div class="col-sm-10">: {{$user->name}}</div>
+                                    <div class="col-md-4">
+                                        <img src="{{asset('assets/upload/images/event/banner1.jpg')}}" class="w-100">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>Penyedia</label><br>
+                                                {{$event->partner->nama_partner}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>Judul</label><br>
+                                                {{$event->judul}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>Isi</label><br>
+                                                {{$event->isi}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Tanggal Publish</label><br>
+                                                {{$event->date_publish}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Status</label><br>
+                                                @if($event->status == 1)Publish @else Blokir @endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Tanggal Mulai</label><br>
+                                                {{$event->date_mulai}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Tanggal Selesai</label><br>
+                                                {{$event->date_selesai}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Tempat</label><br>
+                                                {{$event->tempat}}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                    <div class="row">
-                                        <label class="col-sm-2">UserName</label>
-                                        <div class="col-sm-10">: {{$user->username}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2">Email</label>
-                                        <div class="col-sm-10">: {{$user->email}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2">Foto</label>
-                                        <div class="col-sm-10"> <img src="{{url('assets/upload/images/user/'.$user->foto)}}" class="w-25"></div>
-                                    </div>
-
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-footer text-center">
-                                <a href="/admin/user/" class="btn btn-info btn-sm">Back</a>
-                                <a href="/admin/user/edit/{{$user->username}}" class="btn btn-success btn-sm">Edit</a>
-                                <form action="/admin/user/delete/{{$user->id}}" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Apakah anda akan memghapus ???')">Delete</button>
-                                </form>
+                            <div class="card-footer">
+                                <a href="{{route('admin.event')}}" class="btn btn-sm btn-info">Back</a>
+                                <a href="{{route('admin.event.edit_event', ['slug'=>$event->slug])}}" class="btn btn-sm btn-success">Edit</a>
+                                <a href="{{route('admin.event')}}" class="btn btn-sm btn-danger">Delete</a>
                             </div>
                         </div>
                         <!-- /.card -->

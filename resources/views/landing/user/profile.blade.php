@@ -92,7 +92,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($pendidikan as $p)
-                                        <tr @if($p->pendidikan_terahir === 1) class='bg-secondary text-dark' @endif>
+                                        <tr @if($p->pendidikan_terahir === 1) class='bg-warning text-dark' @endif>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$p->education_level->education_level}}</td>
                                             <td>{{$p->program_studi}}</td>

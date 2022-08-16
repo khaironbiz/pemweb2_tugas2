@@ -27,6 +27,7 @@
                 @endforeach
             </div>
 
+
         </div>
     </section><!-- End Gallery Section -->
 @endsection

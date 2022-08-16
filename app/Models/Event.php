@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class,'id_penyelenggara','id');
+    }
 }

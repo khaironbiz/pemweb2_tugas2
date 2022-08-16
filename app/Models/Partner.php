@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Partner extends Model
 {
     use HasFactory;
+    public function event()
+    {
+        return $this->hasMany(Event::class,'id_penyelenggara','id');
+    }
 }
