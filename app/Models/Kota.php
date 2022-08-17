@@ -21,5 +21,5 @@ class Kota extends Model
     {
         return $this->hasManyThrough(Kelurahan::class,Kecamatan::class,  'city_code','district_code','code','code');
     }
-    
+
 }

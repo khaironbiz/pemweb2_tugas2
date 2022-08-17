@@ -16,10 +16,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-//        User::factory()
-//            ->count(50)
-//            ->hasPosts(1)
-//            ->create();
         $data =[
             [
                 'nama_depan'        => 'Khairon',

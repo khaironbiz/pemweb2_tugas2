@@ -21,10 +21,12 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            Education_type::class,
-            Education_level::class,
-            Education_user::class,
-            User::class,
+            UserSeeder::class,
+            PartnerSeeder::class,
+            EventSeeder::class,
+            EducationTypeSeeder::class,
+            EducationLevelSeeder::class,
+            EducationUserSeeder::class
         ]);
     }
 }
