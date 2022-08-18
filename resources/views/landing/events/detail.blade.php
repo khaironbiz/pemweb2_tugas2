@@ -17,16 +17,15 @@
                     <div class="card p-2">
                         <div class="card mb-2">
                             <div class="card-header">
-                                <b>Judul Event</b>
+                                <b>{{$event->judul}}</b>
                             </div>
                             <div class="card-body">
                                 <h6>Deskripsi</h6>
-                                <p>
-                                    Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                                </p>
-
+                                {{$event->isi}}
                                 <h6 class="mt-3">Tanggal</h6>
+                                {{$event->date_mulai}} - {{$event->date_selesai}}
                                 <h6 class="mt-3">Tempat</h6>
+                                {{$event->tempat}}
                                 <h6 class="mt-3">Akreditasi</h6>
                                 <div class="row">
                                     <div class="col-4">

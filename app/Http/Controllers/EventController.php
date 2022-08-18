@@ -15,18 +15,23 @@ class EventController extends Controller
     //tampil di landing page
     public function index()
     {
+        $events = Event::all();
         $data = [
             'title'     => 'Events',
             'navbar'    => 'events',
+            'events'    => $events
         ];
         return view('landing.events.events', $data);
     }
     public function detail($slug)
     {
-
+        $event = Event::where('slug', $slug)->first();
         $data = [
             'title'     => 'Event',
+            'class'     => 'event',
+            'sub_class' => 'detail',
             'navbar'    => 'events',
+            'event'     => $event
         ];
         return view('landing.events.detail', $data);
     }

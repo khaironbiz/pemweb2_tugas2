@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education_level;
 use App\Models\Home;
 use App\Models\Provinsi;
 use App\Models\Kota;
@@ -59,10 +60,11 @@ class HomeController extends Controller
     }
     public function services()
     {
-
+        $product = Education_level::where('education_type_id', 7)->get();
         $data = [
             'title'     => 'Services',
             'navbar'    => 'services',
+            'product'   => $product
         ];
         return view('landing.services.services', $data);
     }
