@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Education_user;
-use App\Models\Example;
-use App\Models\Profesi;
-use App\Http\Requests\user\Store;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +44,7 @@ class UserController extends Controller
         ];
         return view('landing.user.profile', $data);
     }
-    public function store(Store $request){
+    public function store(StoreUserRequest $request){
 
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('file');
@@ -109,68 +108,42 @@ class UserController extends Controller
         ];
         return view('landing.user.edit', $data);
     }
-    public function profileupdate(Request $request, $id){
-        $validator = Validator::make($request->all(), [
-            'nama_depan'    => 'required',
-            'nama_belakang' => 'required',
-            'nik'           => 'required|numeric',
-            'email'         => 'required|email:rfc,dns',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->with('errorForm', $validator->errors()->getMessages())
-                ->withInput();
-        }else{
-            // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('file');
-            $user = User::find($id);
-            //ambil data dari form
-            $user->nama_depan       = $request->nama_depan;
-            $user->nama_belakang    = $request->nama_belakang;
-            $user->gelar_depan      = $request->gelar_depan;
-            $user->gelar_belakang   = $request->gelar_belakang;
-            $user->nama_lengkap     = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
-            $user->username         = uniqid();
-            $user->tgl_lahir        = $request->tgl_lahir;
-            $user->jk               = $request->jk;
-            $user->nik              = $request->nik;
-            $user->nira             = $request->nira;
-            $user->email            = $request->email;
-            $user->phone_cell       = $request->phone_cell;
-
-            //jika ada gambar yang diupload
-            if($file !=''){
-                // isi dengan nama folder tempat kemana file diupload
-                $tujuan_upload  = 'assets/upload/images/user/';
-                $resize         = 'assets/upload/images/user/resize/';
-                $file_resize    = $resize.$user->foto;
-                $file_lama     = $tujuan_upload.$user->foto;
-//                unlink($file_lama);
-//                unlink($file_resize);
-                //resize image
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                $img = Image::make($file);
-                if (Image::make($file)->width() > 100) {
-                    $img->resize(100, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-                $img->save(public_path($resize) . $filename);
-                // upload file
-                $nama_file_baru = uniqid().$file->getClientOriginalName();
-                $file->move($tujuan_upload,$nama_file_baru);
-                $user->foto = $nama_file_baru;
-                $user->save();
-            }else{
-                //jika tidak ada gambar
-                $user->save();
-            }
-            if ($user) {
-                return redirect()->route('profile')->with(['success' => 'Data berhasil diupdate']);
-            } else {
-                return redirect()->route('profile.edit')->with(['error' => 'data gagal tersimpan']);
-            }
-        }
+    public function profileupdate(UpdateUserRequest $request, $id){
+        $data = $request->all();
+        $data['nama_lengkap']   = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
+        $data['username']       = uniqid();
+        dd($data);
+//        if($request->file('file') !=''){
+//            $file = $request->file('file');
+//            // isi dengan nama folder tempat kemana file diupload
+//            $tujuan_upload  = 'assets/upload/images/user/';
+//            $resize         = 'assets/upload/images/user/resize/';
+//            $file_resize    = $resize.Auth::user()->foto;
+//            $file_lama     = $tujuan_upload.Auth::user()->foto;
+////                unlink($file_lama);
+////                unlink($file_resize);
+//            //resize image
+//            $filename = time() . '.' . $file->getClientOriginalExtension();
+//            $img = Image::make($file);
+//            if (Image::make($file)->width() > 100) {
+//                $img->resize(100, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            }
+//            $img->save(public_path($resize) . $filename);
+//            // upload file
+//            $nama_file_baru = uniqid().$file->getClientOriginalName();
+//            $file->move($tujuan_upload,$nama_file_baru);
+//            $data['foto'] = $nama_file_baru;
+//        }
+//        $update_user = Auth::user()->update($data);
+//        if ($update_user) {
+//            dd($update_user);
+////            return redirect()->route('profile')->with(['success' => 'Data berhasil diupdate']);
+//        } else {
+//            dd('gagal');
+////                return redirect()->route('profile.edit')->with(['error' => 'data gagal tersimpan']);
+//        }
     }
 
     public function update(Request $request, $id){

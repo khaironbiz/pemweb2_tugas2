@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nama_belakang',100);
             $table->string('nama_lengkap',200);
             $table->date('tgl_lahir');
-            $table->string('jk', 25);
+            $table->string('jenis_kelamin', 25);
             $table->bigInteger('nik')->nullable();
             $table->bigInteger('nira')->nullable();
             $table->string('username')->unique();

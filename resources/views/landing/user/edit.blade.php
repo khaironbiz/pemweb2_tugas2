@@ -20,9 +20,9 @@
                             @csrf
                             <div class="card-body">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Depan" name="nama_depan" value="{{$user->nama_depan}}">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control is-invalid text-danger" id="floatingInput" placeholder="Nama Depan" name="nama_depan" value="{{$user->nama_depan}}">
                                             <label for="floatingInput">Nama Depan</label>
                                         </div>
                                     </div>

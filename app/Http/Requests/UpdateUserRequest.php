@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\user;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class Store extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class Store extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->id=1;
+        return true;
     }
 
     /**
@@ -29,11 +28,8 @@ class Store extends FormRequest
             'gelar_belakang'    => 'required',
             'nama_depan'        => 'required',
             'nama_belakang'     => 'required',
-            'username'          => 'required|alpha_num',
             'phone_cell'        => 'required|numeric',
             'email'             => 'required|email:rfc,dns',
-            'password'          => 'required',
-            'file'              => 'required',
         ];
     }
 }

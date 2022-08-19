@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'gelar_belakang'    => 'S.Kep., S.Kom., M.Kom., MH.',
                 'nama_lengkap'      => 'Ns. Khairon, S.Kep., S.Kom., M.Kom., MH.',
                 'tgl_lahir'         => '1984-09-06',
-                'jk'                => 1,
+                'jenis_kelamin'     => 1,
                 'nira'              => '31720126348',
                 'nik'               => '3209290609840002',
                 'username'          => md5(uniqid()),
