@@ -7,7 +7,7 @@
         <div class="container mt-5" data-aos="fade-up">
             <div class="section-title">
                 <h2>{{$title}}</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                <p>{{$event->ringkasan}}</p>
             </div>
             <div class="row">
                 <div class="col-md-4  d-flex">
@@ -21,9 +21,9 @@
                             </div>
                             <div class="card-body">
                                 <h6>Deskripsi</h6>
-                                {{$event->isi}}
+                                {!! $event->isi !!}
                                 <h6 class="mt-3">Tanggal</h6>
-                                {{$event->date_mulai}} - {{$event->date_selesai}}
+                                {{$event->date_mulai}} <b> sd </b> {{$event->date_selesai}}
                                 <h6 class="mt-3">Tempat</h6>
                                 {{$event->tempat}}
                                 <h6 class="mt-3">Akreditasi</h6>

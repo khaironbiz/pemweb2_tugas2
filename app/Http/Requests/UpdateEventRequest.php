@@ -13,7 +13,7 @@ class UpdateEventRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateEventRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id_penyelenggara'  => 'required',
+            'judul'             => 'required',
+            'ringkasan'         => 'required',
+            'isi'               => 'required',
+            'date_publish'      => 'required|date',
+            'harga'             => 'required|numeric',
+            'kuota'             => 'required|numeric',
+            'banner'            => 'required',
+            'date_mulai'        => 'required|date',
+            'date_selesai'      => 'required|date',
+            'tempat'            => 'required',
+            'status'            => 'required',
         ];
     }
 }

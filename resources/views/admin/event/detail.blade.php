@@ -58,7 +58,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Isi</label><br>
-                                                {{$event->isi}}
+                                                {!! $event->isi !!}
                                             </div>
                                         </div>
                                         <div class="row">

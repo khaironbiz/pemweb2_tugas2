@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Partner;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -83,35 +84,27 @@ class EventController extends Controller
     }
     public function store(StoreEventRequest $request)
     {
-        $file = $request->file('file');
+        $file = $request->file('banner');
         // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'assets/upload/images/user/';
+        $tujuan_upload = 'assets/upload/images/event/';
         // upload file
         $nama_file_baru = uniqid().$file->getClientOriginalName();
-        $file->move($tujuan_upload,$nama_file_baru);
 
-        $user = new User();
-        $user->gelar_depan = $request->gelar_depan;
-        $user->gelar_belakang = $request->gelar_belakang;
-        $user->nama_depan = $request->nama_depan;
-        $user->nama_belakang = $request->nama_belakang;
-        $user->nama_lengkap = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang.", ".$request->gelar_belakang;
-        $user->tgl_lahir ="1984-09-06";
-        $user->jk = 1;
-        $user->username = Str::slug($request->username, '-');
-        $user->email = $request->email;
-        $user->phone_cell = $request->phone_cell;
-        $user->password = hash::make($request->password);
-
-        $user->foto = $nama_file_baru;
-        $user->save();
-
-        if($user){
-
-            return redirect()->route('user')->with(['success'=>'data anda tersimpan']);
+        $data = $request->validated();
+        $data['status']     = 0;
+        $data['banner']     = $nama_file_baru;
+        $data['slug']       = md5(uniqid());
+        $data['created_by'] = Auth::user()->id;
+        $data['created_at'] = now();
+        //buat data baru
+        $add_data = Event::create($data);
+        if($add_data){
+            $file->move($tujuan_upload,$nama_file_baru);
+            return back()->with('success', 'Created successfully!');
         }else{
-            return redirect()->route('example.data')->with(['error'=>'data gagal tersimpan']);
+            return back()->with('error', 'Data gagal ditambahkan');
         }
+
     }
 
 

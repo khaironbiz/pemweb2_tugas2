@@ -59,6 +59,12 @@
                                                 <input class="form-control" type="text" value="{{$event->judul}}">
                                             </div>
                                         </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-12">
+                                                <label>Ringkasan</label><br>
+                                                <textarea class="form-control" cols="30" rows="3" name="ringkasan">{{$event->ringkasan}}</textarea>
+                                            </div>
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-md-12">

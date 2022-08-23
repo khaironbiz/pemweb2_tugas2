@@ -66,10 +66,6 @@ class AuthController extends Controller
         return view('landing.auth.registration', $data);
     }
     public function register(RegisterRequest $request){
-        //
-//        $validator = Validator::make($request->all(), [
-//
-//        ]);
 
         $data = $request->validated();
         $data['nama_lengkap']   = $request->gelar_depan." ".$request->nama_depan." ".$request->nama_belakang." ".$request->gelar_belakang;
