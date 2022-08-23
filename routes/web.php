@@ -95,6 +95,7 @@ Route::get('/admin/event/add',[EventController::class,'add'])->name('admin.event
 Route::post('admin/event/store',[App\Http\Controllers\EventController::class,'store'])->name('event.store')->middleware('auth');
 Route::get('/admin/event/detail/{slug}',[EventController::class,'detail_event'])->name('admin.event.detail_event')->middleware('auth');
 Route::get('/admin/event/edit/{slug}',[EventController::class,'edit_event'])->name('admin.event.edit_event')->middleware('auth');
+Route::post('/admin/event/update/{slug}',[EventController::class,'update'])->name('admin.event.update_event')->middleware('auth');
 
 
 //admin area menggunakan theme admin LTE

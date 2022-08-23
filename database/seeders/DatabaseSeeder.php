@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             EducationTypeSeeder::class,
             EducationLevelSeeder::class,
-            EducationUserSeeder::class
+            EducationUserSeeder::class,
+            VideoCategorySeeder::class
         ]);
     }
 }

@@ -31,7 +31,6 @@ class UpdateEventRequest extends FormRequest
             'date_publish'      => 'required|date',
             'harga'             => 'required|numeric',
             'kuota'             => 'required|numeric',
-            'banner'            => 'required',
             'date_mulai'        => 'required|date',
             'date_selesai'      => 'required|date',
             'tempat'            => 'required',

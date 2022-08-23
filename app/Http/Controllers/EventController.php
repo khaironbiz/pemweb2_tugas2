@@ -77,7 +77,8 @@ class EventController extends Controller
             'navbar'    => 'events',
             'class'     => 'event',
             'sub_class' => 'create',
-            'partner'   => $partner
+            'partner'   => $partner,
+            'event'     => new Event()
 
         ];
         return view('admin.event.create', $data);
@@ -142,9 +143,30 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(UpdateEventRequest $request, $slug)
     {
-        //
+        $event          = Event::where('slug', $slug)->first();
+        $data           = $request->validated();
+        //jika update banner maka jalankan script berikut
+        $file           = $request->file('banner');
+        if($file != ''){
+            $tujuan_upload  = 'assets/upload/images/event/';
+            $nama_file_baru = uniqid().$file->getClientOriginalName();
+            $data['banner'] = $nama_file_baru;
+            $file->move($tujuan_upload,$nama_file_baru);
+            unlink($tujuan_upload.$event->banner);
+
+        }
+        //update data event
+
+        $event_update = $event->update($data);
+        if($event_update){
+
+            return back()->with('success', 'Created successfully!');
+        }else{
+            return back()->with('error', 'Data gagal ditambahkan');
+        }
+
     }
 
     /**
